@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduNexus - Plataforma de Aprendizaje</title>
+    <link rel="stylesheet" href="inicio.css">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <h1>EduNexus</h1>
+            <nav>
+                <a href="#">Inicio</a>
+                <a href="#">Clases</a>
+                <a href="#">Diplomas</a>
+                <a href="#">Progreso</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="react-courses-section"></div>
+
+    <footer>
+        <p>&copy; 2026 EduNexus. Todos los derechos reservados.</p>
+    </footer>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        // Datos estructurados de los cursos
+        const initialCourses = [
+            {
+                id: 1,
+                title: "Desarrollo Web Frontend",
+                category: "Programación",
+                description: "Aprende HTML5, CSS3, JavaScript y las bases de React desde cero.",
+                lessons: 24,
+                rating: 4.8
+            },
+            {
+                id: 2,
+                title: "Matemáticas para Programadores",
+                category: "Ciencia",
+                description: "Domina las funciones lineales, álgebra y lógica para potenciar tus algoritmos.",
+                lessons: 18,
+                rating: 4.9
+            },
+            {
+                id: 3,
+                title: "Diseño de Interfaz (UI/UX)",
+                category: "Diseño",
+                description: "Crea prototipos interactivos y aprende las mejores prácticas de usabilidad.",
+                lessons: 15,
+                rating: 4.7
+            }
+        ];
+
+        function CoursesSection() {
+            const [selectedCategory, setSelectedCategory] = useState("Todos");
+
+            // Filtrar cursos según la categoría seleccionada
+            const filteredCourses = selectedCategory === "Todos" 
+                ? initialCourses 
+                : initialCourses.filter(course => course.category === selectedCategory);
+
+            return (
+                <section class="courses-section">
+                    <div class="section-header">
+                        <h2>Explora Nuestros Cursos</h2>
+                        <p>Impulsa tu futuro con aprendizaje interactivo y práctico.</p>
+                    </div>
+
+                    {/* Botones de Filtro */}
+                    <div class="filter-buttons">
+                        {["Todos", "Programación", "Ciencia", "Diseño"].map(category => (
+                            <button
+                                key={category}
+                                onClick={() => setSelectedCategory(category)}
+                                class={selectedCategory === category ? "active-filter" : ""}
+                            >
+                                {category}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Lista / Grid de Tarjetas de Cursos */}
+                    <div class="courses-grid">
+                        {filteredCourses.map(course => (
+                            <article key={course.id} class="course-card">
+                                <div class="card-content">
+                                    <span class="course-category">{course.category}</span>
+                                    <h3>{course.title}</h3>
+                                    <p>{course.description}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="course-lessons">Lessons: {course.lessons}</span>
+                                    <span class="course-rating">Rating: {course.rating} ⭐</span>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+            );
+        }
+
+        // Renderizar el componente en el div correspondiente
+        const root = ReactDOM.createRoot(document.getElementById('react-courses-section'));
+        root.render(<CoursesSection />);
+    </script>
+</body>
+</html>
