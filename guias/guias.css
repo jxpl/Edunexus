@@ -109,19 +109,18 @@ header h1 {
     box-shadow: var(--shadow-hover);
 }
 
-.image-placeholder {
+/* La nueva clase para las imágenes reales */
+.card-img {
     width: 100%;
     max-width: 220px;
     height: 220px;
-    background-color: #e2e8f0; 
+    /* object-fit: cover evita que la imagen se estire o deforme, la recorta bonito */
+    object-fit: cover; 
     margin-bottom: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-muted);
-    font-style: italic;
     border-radius: 0.5rem;
     border: 1px solid var(--border-color);
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .card p {
