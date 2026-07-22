@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduNexus - Lenguas</title>
+    
+    <!-- CSS de estilos -->
+    <link rel="stylesheet" href="progreso.css">
+    
+    <!-- React y Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <h1>EduNexus</h1>
+            <nav>
+                <a href="../Inicio.html">Inicio</a>
+                <a href="clases.html">Clases</a>
+                <a href="diplomas.html">Diplomas</a>
+                <a href="progreso.html" class="active">Progreso</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="react-lenguas-section"></div>
+
+    <footer>
+        <p>&copy; 2026 EduNexus. Todos los derechos reservados.</p>
+    </footer>
+
+    <script type="text/babel">
+        // Datos específicos del curso de Lenguas (5 de 15 lecciones completadas)
+        const lenguasData = {
+            title: "Curso de Lenguas",
+            category: "Lenguas",
+            overallProgress: 33,
+            lessonsCompleted: 5,
+            totalLessons: 15,
+            modules: [
+                {
+                    id: 1,
+                    title: "Unidad 1: Gramática Básica",
+                    status: "Completado",
+                    completedCount: 5,
+                    totalCount: 5,
+                    lessons: [
+                        { name: "1.1 Sustantivos y Adjetivos", done: true },
+                        { name: "1.2 Verbos en Tiempo Presente", done: true },
+                        { name: "1.3 Estructura de la Oración", done: true },
+                        { name: "1.4 Artículos y Pronombres", done: true },
+                        { name: "1.5 Preposiciones Básicas", done: true }
+                    ]
+                },
+                {
+                    id: 2,
+                    title: "Unidad 2: Vocabulario y Conversación",
+                    status: "Pendiente",
+                    completedCount: 0,
+                    totalCount: 5,
+                    lessons: [
+                        { name: "2.1 Saludos y Presentaciones", done: false },
+                        { name: "2.2 Expresiones Cotidianas", done: false },
+                        { name: "2.3 Números y Fechas", done: false },
+                        { name: "2.4 En la Ciudad y Direcciones", done: false },
+                        { name: "2.5 En el Restaurante y Compras", done: false }
+                    ]
+                },
+                {
+                    id: 3,
+                    title: "Unidad 3: Lectura y Comprensión",
+                    status: "Pendiente",
+                    completedCount: 0,
+                    totalCount: 5,
+                    lessons: [
+                        { name: "3.1 Textos Breves e Informativos", done: false },
+                        { name: "3.2 Identificación de Ideas Principales", done: false },
+                        { name: "3.3 Conectores Textuales", done: false },
+                        { name: "3.4 Redacción de Ensayos Cortos", done: false },
+                        { name: "3.5 Análisis Literario Básico", done: false }
+                    ]
+                }
+            ]
+        };
+
+        function LenguasSection() {
+            return (
+                <section className="courses-section">
+                    <div className="section-header">
+                        <a 
+                            href="progreso.html" 
+                            style={{ 
+                                display: 'inline-block', 
+                                color: '#2563eb', 
+                                textDecoration: 'none', 
+                                fontWeight: 'bold',
+                                marginBottom: '12px'
+                            }}
+                        >
+                            &larr; Volver a Progreso General
+                        </a>
+
+                        <h2>{lenguasData.title}</h2>
+                        <p>Avance general: <strong>{lenguasData.overallProgress}%</strong> ({lenguasData.lessonsCompleted} de {lenguasData.totalLessons} lecciones)</p>
+                    </div>
+
+                    <div className="courses-grid">
+                        {lenguasData.modules.map(module => (
+                            <article key={module.id} className="course-card">
+                                <div className="card-content">
+                                    <span className="course-category">{lenguasData.category}</span>
+                                    <h3>{module.title}</h3>
+                                    <p>Avance del módulo: {module.completedCount}/{module.totalCount} lecciones</p>
+                                    
+                                    <ul style={{ listStyle: 'none', padding: 0, marginTop: '15px' }}>
+                                        {module.lessons.map((lesson, idx) => (
+                                            <li key={idx} style={{ padding: '4px 0', fontSize: '0.9em' }}>
+                                                {lesson.done ? "✅ " : "⚪ "} 
+                                                <span style={{ textDecoration: lesson.done ? 'line-through' : 'none', opacity: lesson.done ? 0.7 : 1 }}>
+                                                    {lesson.name}
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="card-footer">
+                                    <span className="course-lessons">Estado: {module.status}</span>
+                                    <span className="course-rating">
+                                        {Math.round((module.completedCount / module.totalCount) * 100)}%
+                                    </span>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('react-lenguas-section'));
+        root.render(<LenguasSection />);
+    </script>
+</body>
+</html>

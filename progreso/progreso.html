@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduNexus - Progreso</title>
     
-    <!-- Enlace al CSS específico de progreso -->
+    <!-- CSS de estilos -->
     <link rel="stylesheet" href="progreso.css">
     
     <!-- React y Babel -->
@@ -37,49 +37,74 @@
         const userProgress = [
             {
                 id: 1,
-                title: "Desarrollo Web Frontend",
-                category: "Programación",
+                title: "Curso de Ciencias",
+                category: "Ciencias",
                 description: "Progreso: 18 de 24 lecciones completadas (75%).",
                 lessons: "18/24",
-                rating: "75%"
+                rating: "75%",
+                url: "ciencias.html"
             },
             {
                 id: 2,
-                title: "Matemáticas para Programadores",
-                category: "Ciencia",
+                title: "Curso de Matemáticas",
+                category: "Matematicas",
                 description: "Progreso: 9 de 18 lecciones completadas (50%).",
                 lessons: "9/18",
-                rating: "50%"
+                rating: "50%",
+                url: "#"
             },
             {
                 id: 3,
-                title: "Diseño de Interfaz (UI/UX)",
-                category: "Diseño",
+                title: "Curso de Lenguas",
+                category: "Lenguas",
                 description: "Progreso: 5 de 15 lecciones completadas (33%).",
                 lessons: "5/15",
-                rating: "33%"
+                rating: "33%",
+                url: "#"
             }
         ];
 
         function ProgressSection() {
             return (
-                <section class="courses-section">
-                    <div class="section-header">
+                <section className="courses-section">
+                    <div className="section-header">
                         <h2>Tu Progreso Académico</h2>
                         <p>Consulta el avance de tus cursos inscritos.</p>
                     </div>
 
-                    <div class="courses-grid">
+                    <div className="courses-grid">
                         {userProgress.map(course => (
-                            <article key={course.id} class="course-card">
-                                <div class="card-content">
-                                    <span class="course-category">{course.category}</span>
-                                    <h3>{course.title}</h3>
+                            <article key={course.id} className="course-card" style={{ position: 'relative' }}>
+                                <div className="card-content">
+                                    <span className="course-category">{course.category}</span>
+                                    
+                                    <h3>
+                                        <a href={course.url} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            {course.title}
+                                        </a>
+                                    </h3>
+                                    
                                     <p>{course.description}</p>
+                                    
+                                    {course.url !== "#" && (
+                                        <a 
+                                            href={course.url} 
+                                            style={{
+                                                display: 'inline-block',
+                                                marginTop: '12px',
+                                                color: '#2563eb',
+                                                fontWeight: 'bold',
+                                                fontSize: '0.9rem',
+                                                textDecoration: 'none'
+                                            }}
+                                        >
+                                            Ver lecciones de Ciencias &rarr;
+                                        </a>
+                                    )}
                                 </div>
-                                <div class="card-footer">
-                                    <span class="course-lessons">Lecciones: {course.lessons}</span>
-                                    <span class="course-rating">Completado: {course.rating}</span>
+                                <div className="card-footer">
+                                    <span className="course-lessons">Lecciones: {course.lessons}</span>
+                                    <span className="course-rating">Completado: {course.rating}</span>
                                 </div>
                             </article>
                         ))}
