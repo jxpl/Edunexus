@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduNexus - Progreso</title>
+    
+    <!-- Enlace al CSS específico de progreso -->
+    <link rel="stylesheet" href="progreso.css">
+    
+    <!-- React y Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <h1>EduNexus</h1>
+            <nav>
+                <a href="../inicio.html">Inicio</a>
+                <a href="clases.html">Clases</a>
+                <a href="diplomas.html">Diplomas</a>
+                <a href="progreso.html" class="active">Progreso</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="react-progress-section"></div>
+
+    <footer>
+        <p>&copy; 2026 EduNexus. Todos los derechos reservados.</p>
+    </footer>
+
+    <script type="text/babel">
+        const userProgress = [
+            {
+                id: 1,
+                title: "Desarrollo Web Frontend",
+                category: "Programación",
+                description: "Progreso: 18 de 24 lecciones completadas (75%).",
+                lessons: "18/24",
+                rating: "75%"
+            },
+            {
+                id: 2,
+                title: "Matemáticas para Programadores",
+                category: "Ciencia",
+                description: "Progreso: 9 de 18 lecciones completadas (50%).",
+                lessons: "9/18",
+                rating: "50%"
+            },
+            {
+                id: 3,
+                title: "Diseño de Interfaz (UI/UX)",
+                category: "Diseño",
+                description: "Progreso: 5 de 15 lecciones completadas (33%).",
+                lessons: "5/15",
+                rating: "33%"
+            }
+        ];
+
+        function ProgressSection() {
+            return (
+                <section class="courses-section">
+                    <div class="section-header">
+                        <h2>Tu Progreso Académico</h2>
+                        <p>Consulta el avance de tus cursos inscritos.</p>
+                    </div>
+
+                    <div class="courses-grid">
+                        {userProgress.map(course => (
+                            <article key={course.id} class="course-card">
+                                <div class="card-content">
+                                    <span class="course-category">{course.category}</span>
+                                    <h3>{course.title}</h3>
+                                    <p>{course.description}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="course-lessons">Lecciones: {course.lessons}</span>
+                                    <span class="course-rating">Completado: {course.rating}</span>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('react-progress-section'));
+        root.render(<ProgressSection />);
+    </script>
+</body>
+</html>
