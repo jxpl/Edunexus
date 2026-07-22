@@ -5,59 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="inicio.css">
     <title>EduNexus - Menú Principal</title>
-
     <!-- VINCULACIÓN DEL CSS COMPLETAMENTE INDEPENDIENTE -->
     <link rel="stylesheet" href="styles.css">
-    
     <!-- React, ReactDOM y Babel por CDN -->
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
-
     <!-- Contenedor donde React renderizará la app -->
     <div id="root"></div>
 
     <!-- Código React con las imágenes web aplicadas -->
     <script type="text/babel">
         function MainMenu() {
+            // Se agregaron las nuevas imágenes y la propiedad 'link' dedicada para navegación limpia
             const menuItems = [
                 { 
                     id: 1, 
                     title: "GUÍAS", 
-                    imageUrl: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=150&auto=format&fit=crop&q=80",
-                    alt: "Guías"
+                    imageUrl: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=150&auto=format&fit=crop&q=80", 
+                    alt: "Guías",
+                    link: "./guias/guias.html" // Ruta de ejemplo
                 },
                 { 
                     id: 2, 
                     title: "CLASES", 
-                    imageUrl: "https://images.unsplash.com/photo-1588072432836-e10032774350?w=150&auto=format&fit=crop&q=80",
-                    alt: "Clases"
+                    imageUrl: "https://images.unsplash.com/photo-1588072432836-e10032774350?w=150&auto=format&fit=crop&q=80", 
+                    alt: "Clases",
+                    link: "./clases/clases.html" 
                 },
                 { 
                     id: 3, 
                     title: "TALLERES", 
-                    imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=150&auto=format&fit=crop&q=80",
-                    alt: "Talleres"
+                    imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=150&auto=format&fit=crop&q=80", 
+                    alt: "Talleres",
+                    link: "./talleres/talleres.html"
                 },
                 { 
                     id: 4, 
                     title: "MATERIAS COMPLEMENTARIAS", 
-                    imageUrl: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=150&auto=format&fit=crop&q=80",
-                    alt: "Materias Complementarias"
+                    imageUrl: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=150&auto=format&fit=crop&q=80", 
+                    alt: "Materias Complementarias",
+                    link: "./materias/materias.html"
                 },
                 { 
                     id: 5, 
-                    title: "PROGRESO", 
-                    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=150&auto=format&fit=crop&q=80",
-                    alt: "Progreso"
+                    title: "PROGRESO", // Limpiamos el texto HTML de aquí
+                    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=150&auto=format&fit=crop&q=80", 
+                    alt: "Progreso",
+                    link: "./progreso/progreso.html" // El enlace ahora se maneja de forma nativa
                 },
                 { 
                     id: 6, 
                     title: "DIPLOMAS", 
-                    imageUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=150&auto=format&fit=crop&q=80",
-                    alt: "Diplomas"
+                    imageUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=150&auto=format&fit=crop&q=80", 
+                    alt: "Diplomas",
+                    link: "./diplomas/diplomas.html"
                 }
             ];
 
@@ -72,7 +76,6 @@
                             <button class="icon-btn" aria-label="Buscar">🔍</button>
                         </div>
                     </header>
-
                     <main class="main-container">
                         <section class="news-banner">
                             <h1 class="menu-title">Menú Principal</h1>
@@ -83,19 +86,16 @@
                                 </p>
                             </div>
                         </section>
-
                         <section class="menu-grid">
                             {menuItems.map(item => (
-                                <button 
-                                    key={item.id} 
-                                    class="grid-card"
-                                    onClick={() => alert(`Ingresando a: ${item.title}`)}
-                                >
-                                    <div class="card-image-wrapper">
-                                        <img src={item.imageUrl} alt={item.alt} class="card-img" />
+                                <a key={item.id} href={item.link} class="grid-card-link" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <div class="grid-card">
+                                        <div class="card-image-wrapper">
+                                            <img src={item.imageUrl} alt={item.alt} class="card-img" />
+                                        </div>
+                                        <h3 class="card-title">{item.title}</h3>
                                     </div>
-                                    <h3 class="card-title">{item.title}</h3>
-                                </button>
+                                </a>
                             ))}
                         </section>
                     </main>
