@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduNexus - Actividad Interactiva de Robótica</title>
+
+    <!-- HOJA DE ESTILOS FUTURISTA COMPARTIDA -->
+    <link rel="stylesheet" href="talleres.css">
+    
+    <!-- React, ReactDOM y Babel por CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function TallerRoboticaInteractivoView() {
+            const [showMenu, setShowMenu] = React.useState(false);
+            const [selectedOption, setSelectedOption] = React.useState(null);
+            const [isSubmitted, setIsSubmitted] = React.useState(false);
+
+            // Pregunta de ejemplo del taller interactivo de Robótica
+            const questionData = {
+                id: 1,
+                title: "Desafío 1: Sensores y Ultrasonido",
+                prompt: "Estás programando un robot evasor de obstáculos usando un sensor ultrasónico (HC-SR04). ¿Qué componente del sensor emite la onda de alta frecuencia para medir la distancia?",
+                options: [
+                    { id: 'A', text: "A) Pin Echo (Receptor)" },
+                    { id: 'B', text: "B) Pin Trig (Disparador / Emisor)", correct: true },
+                    { id: 'C', text: "C) Pin VCC (Alimentación)" },
+                    { id: 'D', text: "D) ServoMotor de giro" }
+                ],
+                explanation: "¡Excelente! El pin 'Trig' (Trigger) envía el pulso de ultrasonido, mientras que el pin 'Echo' recibe el rebote para calcular la distancia."
+            };
+
+            const handleBackToDetail = () => {
+                window.location.href = "taller-robotica-detalle.html";
+            };
+
+            const handleSubmit = () => {
+                if (selectedOption !== null) {
+                    setIsSubmitted(true);
+                }
+            };
+
+            const handleReset = () => {
+                setSelectedOption(null);
+                setIsSubmitted(false);
+            };
+
+            return (
+                <div className="talleres-page">
+                    {/* Encabezado Superior */}
+                    <header className="top-bar">
+                        <div className="top-bar-left">
+                            <button 
+                                className="icon-btn" 
+                                aria-label="Volver al detalle"
+                                onClick={handleBackToDetail}
+                            >
+                                ←
+                            </button>
+                            <span className="app-title">simulación robótica</span>
+                        </div>
+
+                        <div className="top-bar-right">
+                            <button
+                                className="icon-btn"
+                                aria-label="Menú"
+                                onClick={() => setShowMenu(!showMenu)}
+                            >
+                                ☰
+                            </button>
+
+                            {/* Menú Desplegable Flotante */}
+                            {showMenu && (
+                                <div className="dropdown-menu">
+                                    <a href="../guias/guias.html">Guías</a>
+                                    <a href="../clases/clases.html">Clases</a>
+                                    <a href="#">Ocupaciones</a>
+                                    <a href="../materias/materias.html">Materias complementarias</a>
+                                    <button className="btn-add-action">+ Agregar</button>
+                                </div>
+                            )}
+                        </div>
+                    </header>
+
+                    {/* Contenido Interactivo */}
+                    <main className="talleres-container" style={{ maxWidth: '700px' }}>
+                        <article className="taller-card" style={{ cursor: 'default', padding: '2rem', width: '100%' }}>
+                            
+                            {/* Barra de Progreso */}
+                            <div style={{ width: '100%', marginBottom: '1.5rem' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.4rem' }}>
+                                    <span>Módulo 1 de 4</span>
+                                    <span>Progreso: 25%</span>
+                                </div>
+                                <div style={{ width: '100%', height: '8px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px', overflow: 'hidden' }}>
+                                    <div style={{ width: '25%', height: '100%', background: 'linear-gradient(90deg, var(--accent-cyan), var(--accent-indigo))' }}></div>
+                                </div>
+                            </div>
+
+                            {/* Título y Enunciado */}
+                            <h2 style={{ fontSize: '1.4rem', color: 'var(--accent-cyan)', marginBottom: '0.8rem' }}>
+                                🤖 {questionData.title}
+                            </h2>
+
+                            <p style={{ color: '#f8fafc', fontSize: '1.05rem', marginBottom: '1.5rem', lineHeight: '1.5' }}>
+                                {questionData.prompt}
+                            </p>
+
+                            {/* Opciones Seleccionables */}
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', width: '100%', marginBottom: '1.5rem' }}>
+                                {questionData.options.map((opt) => {
+                                    const isSelected = selectedOption === opt.id;
+                                    let optionStyle = {
+                                        background: 'rgba(15, 23, 42, 0.7)',
+                                        border: '1px solid var(--border-glow)',
+                                        color: '#f8fafc',
+                                        padding: '0.9rem 1.2rem',
+                                        borderRadius: '10px',
+                                        cursor: 'pointer',
+                                        textAlign: 'left',
+                                        fontSize: '0.95rem',
+                                        transition: 'all 0.2s ease'
+                                    };
+
+                                    if (isSelected) {
+                                        optionStyle.border = '1px solid var(--accent-cyan)';
+                                        optionStyle.background = 'rgba(56, 189, 248, 0.2)';
+                                        optionStyle.boxShadow = '0 0 12px rgba(56, 189, 248, 0.3)';
+                                    }
+
+                                    if (isSubmitted) {
+                                        if (opt.correct) {
+                                            optionStyle.border = '1px solid var(--accent-emerald)';
+                                            optionStyle.background = 'rgba(52, 211, 153, 0.2)';
+                                        } else if (isSelected && !opt.correct) {
+                                            optionStyle.border = '1px solid #ef4444';
+                                            optionStyle.background = 'rgba(239, 68, 68, 0.2)';
+                                        }
+                                    }
+
+                                    return (
+                                        <button 
+                                            key={opt.id}
+                                            onClick={() => !isSubmitted && setSelectedOption(opt.id)}
+                                            style={optionStyle}
+                                        >
+                                            {opt.text}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+
+                            {/* Retroalimentación en vivo */}
+                            {isSubmitted && (
+                                <div style={{
+                                    width: '100%',
+                                    padding: '1rem',
+                                    borderRadius: '10px',
+                                    marginBottom: '1.5rem',
+                                    background: selectedOption === 'B' ? 'rgba(52, 211, 153, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                                    border: `1px solid ${selectedOption === 'B' ? 'var(--accent-emerald)' : '#ef4444'}`,
+                                    color: '#f8fafc'
+                                }}>
+                                    <strong>{selectedOption === 'B' ? '¡Respuesta Correcta!' : 'Inténtalo de nuevo'}</strong>
+                                    <p style={{ fontSize: '0.9rem', marginTop: '0.4rem', opacity: 0.9 }}>
+                                        {questionData.explanation}
+                                    </p>
+                                </div>
+                            )}
+
+                            {/* Botones de Control */}
+                            <div style={{ display: 'flex', gap: '1rem', width: '100%' }}>
+                                {!isSubmitted ? (
+                                    <button 
+                                        onClick={handleSubmit}
+                                        disabled={selectedOption === null}
+                                        className="btn-add-action" 
+                                        style={{
+                                            width: '100%',
+                                            background: selectedOption === null 
+                                                ? 'rgba(255,255,255,0.1)' 
+                                                : 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))',
+                                            color: selectedOption === null ? 'var(--text-muted)' : '#ffffff',
+                                            padding: '0.8rem',
+                                            borderRadius: '10px',
+                                            cursor: selectedOption === null ? 'not-allowed' : 'pointer'
+                                        }}
+                                    >
+                                        Validar Solución
+                                    </button>
+                                ) : (
+                                    <button 
+                                        onClick={handleReset}
+                                        className="btn-add-action" 
+                                        style={{
+                                            width: '100%',
+                                            background: 'rgba(255, 255, 255, 0.1)',
+                                            border: '1px solid var(--border-glow)',
+                                            color: '#ffffff',
+                                            padding: '0.8rem',
+                                            borderRadius: '10px',
+                                            cursor: 'pointer'
+                                        }}
+                                    >
+                                        Reiniciar Desafío
+                                    </button>
+                                )}
+                            </div>
+
+                        </article>
+                    </main>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<TallerRoboticaInteractivoView />);
+    </script>
+</body>
+</html>
