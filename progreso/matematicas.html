@@ -110,16 +110,22 @@
                                     <h3>{module.title}</h3>
                                     <p>Avance del módulo: {module.completedCount}/{module.totalCount} lecciones</p>
                                     
-                                    <ul style={{ listStyle: 'none', padding: 0, marginTop: '15px' }}>
-                                        {module.lessons.map((lesson, idx) => (
-                                            <li key={idx} style={{ padding: '4px 0', fontSize: '0.9em' }}>
-                                                {lesson.done ? "✅ " : "⚪ "} 
-                                                <span style={{ textDecoration: lesson.done ? 'line-through' : 'none', opacity: lesson.done ? 0.7 : 1 }}>
-                                                    {lesson.name}
-                                                </span>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                <ul className="lessons-list">
+    {module.lessons.map((lesson, idx) => (
+        <li key={idx} className={`lesson-item ${lesson.done ? 'completed' : 'pending'}`}>
+            <span className="lesson-icon">
+                {lesson.done ? (
+                    <svg className="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                ) : (
+                    <span className="circle-icon"></span>
+                )}
+            </span>
+            <span className="lesson-name">{lesson.name}</span>
+        </li>
+    ))}
+</ul>
                                 </div>
                                 <div className="card-footer">
                                     <span className="course-lessons">Estado: {module.status}</span>
