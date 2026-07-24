@@ -4,63 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduNexus - Guías Estudiantiles</title>
+    <!-- Enlazamos tu nuevo CSS -->
     <link rel="stylesheet" href="guias.css">
-    <title>Guías Estudiantiles</title>
 </head>
 
 <body>
-
-    <header>
-        <!-- Enlace de regreso al Menú Principal -->
-        <a href="../inicio.html">
-            <button class="icon-btn">&#8592;</button>
-        </a> 
-        <h1>guias</h1>
-        <button class="icon-btn">&#9776;</button>
-    </header> /.
-
-    <div class="container">
-        <main class="grid-layout">
-
-            <!-- Guía 1 (Verde) -->
-            <div class="card">
-                <img src="https://placehold.co/400x400/4CAF50/FFF?text=Ciencias\nNaturales" alt="Ciencias Naturales" class="card-img">
-                <p>guia de ciencias #6</p>
+    <div class="dashboard-layout">
+        
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <!-- Enlace de regreso al Menú Principal -->
+                <a href="../inicio.html" style="text-decoration: none;">
+                    <button class="icon-btn" aria-label="Volver">&#8592;</button>
+                </a> 
+                <h1 class="app-title">Guías</h1>
             </div>
-
-            <!-- Guía 2 (Azul claro) -->
-            <div class="card">
-                <img src="https://placehold.co/400x400/81D4FA/000?text=Ciencias\nSociales" alt="Ciencias Sociales" class="card-img">
-                <p>guia de sociales #1</p>
+            
+            <div class="top-bar-right">
+                <button class="icon-btn" aria-label="Menú">&#9776;</button>
             </div>
+        </header>
 
-            <!-- Guía 3 (Amarillo) -->
-            <div class="card">
-                <img src="https://placehold.co/400x400/FFC107/000?text=Matematicas" alt="Matemáticas" class="card-img">
-                <p>guia de matemticas #1</p>
-            </div>
+        <main class="main-container">
+            <!-- Título principal de la sección -->
+            <h1 class="menu-title">Guías de Estudio</h1>
 
-            <!-- Guía 4 (Rojo) -->
-            <div class="card">
-                <img src="https://placehold.co/400x400/F44336/FFF?text=Lenguaje" alt="Lenguaje" class="card-img">
-                <p>guia de lenguaje #1</p>
-            </div>
+            <section class="menu-grid">
+                <!-- Guía 1 -->
+                <div class="grid-card">
+                    <div class="card-image-wrapper">
+                        <img src="https://th.bing.com/th/id/OIP.JuYC37PA8v25kibDtIEeJAHaHa?w=210&h=210&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Ciencias Naturales" class="card-img">
+                    </div>
+                    <h3 class="card-title">Guía de Ciencias #6</h3>
+                </div>
 
-            <!-- Guía 5 (Azul oscuro) -->
-            <div class="card">
-                <img src="https://placehold.co/400x400/1976D2/FFF?text=Ingles" alt="Inglés" class="card-img">
-                <p>guia de ingles #1</p>
-            </div>
+                <!-- Guía 2 -->
+                <div class="grid-card">
+                    <div class="card-image-wrapper">
+                        <img src="https://th.bing.com/th/id/OIP.ImgygBhavvbCIiI29YXh7gHaEJ?w=293&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Ciencias Sociales" class="card-img">
+                    </div>
+                    <h3 class="card-title">Guía de Sociales #1</h3>
+                </div>
 
-            <!-- Guía 6 (Verde oliva) -->
-            <div class="card">
-                <img src="https://placehold.co/400x400/689F38/FFF?text=Filosofia" alt="Filosofía" class="card-img">
-                <p>guia de filosofia #3</p>
-            </div>
+                <!-- Guía 3 -->
+                <div class="grid-card">
+                    <div class="card-image-wrapper">
+                        <img src="https://th.bing.com/th/id/OIP.y3TLY34HGnb1Lw53aV85rQHaEc?w=309&h=185&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Matemáticas" class="card-img">
+                    </div>
+                    <h3 class="card-title">Guía de Matemáticas #1</h3>
+                </div>
 
+                <!-- Guía 4 -->
+                <div class="grid-card">
+                    <div class="card-image-wrapper">
+                        <img src="https://th.bing.com/th/id/OIP.S4gV8f2sp_CSvBKEWHSqiQHaEc?w=244&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Lenguaje" class="card-img">
+                    </div>
+                    <h3 class="card-title">Guía de Lenguaje #1</h3>
+                </div>
+
+                <!-- Guía 5 -->
+                <div class="grid-card">
+                    <div class="card-image-wrapper">
+                        <img src="https://th.bing.com/th/id/OIP.CXmDNdibLl3C9Ca_U1ddwgHaHa?w=180&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Inglés" class="card-img">
+                    </div>
+                    <h3 class="card-title">Guía de Inglés #1</h3>
+                </div>
+
+                <!-- Guía 6 -->
+                <div class="grid-card">
+                    <div class="card-image-wrapper">
+                        <img src="data:image/webp;base64,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" alt="Filosofía" class="card-img">
+                    </div>
+                    <h3 class="card-title">Guía de Filosofía #3</h3>
+                </div>
+            </section>
         </main>
+        
     </div>
-
 </body>
 
 </html>
