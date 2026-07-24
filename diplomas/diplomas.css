@@ -1,0 +1,135 @@
+/* ==========================================
+   VARIABLES Y CONFIGURACIÓN BASE
+   ========================================== */
+:root {
+    --header-bg: #8c9eb2;         /* Azul grisáceo superior */
+    --info-bg: #90ceeb;           /* Azul claro del cuadro de texto */
+    --text-dark: #1e293b;
+    --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: #f1f5f9;
+    color: var(--text-dark);
+    min-height: 100vh;
+}
+
+/* ==========================================
+   ESTRUCTURA DE LA PÁGINA
+   ========================================== */
+.diplomas-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-bar {
+    background-color: var(--header-bg);
+    color: white;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.top-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.app-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.icon-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================
+   CONTENEDOR Y COMPONENTES VISUALES
+   ========================================== */
+.diplomas-container {
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    min-height: calc(100vh - 60px);
+}
+
+/* DIPLOMA EN LA PARTE SUPERIOR */
+.diploma-card {
+    width: 100%;
+    background-color: #fff;
+    padding: 1.2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.diploma-img {
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* CAJA INFORMATIVA AZUL */
+.message-box {
+    width: 100%;
+    background-color: var(--info-bg);
+    padding: 1.8rem 2rem;
+    text-align: left;
+}
+
+.message-box p {
+    color: #0f172a;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+/* ILUSTRACIÓN / IMAGEN DE CELEBRACIÓN */
+.illustration-card {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    background-color: #f8fafc;
+}
+
+.illustration-img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
