@@ -31,7 +31,8 @@
                 guides: [
                     { id: 1, name: "Guía 1: Introducción a Circuitos y Microcontroladores.pdf", size: "2.1 MB" },
                     { id: 2, name: "Guía 2: Esquemáticos y Diagramas de Cableado.pdf", size: "1.4 MB" }
-                ]
+                ],
+                interactiveLink: "taller-robotica-interactivo.html"
             };
 
             // Regresar a la cuadrícula principal de talleres
@@ -41,7 +42,7 @@
 
             // Navegar a la actividad interactiva de Robótica
             const handleStartInteractiveTaller = () => {
-                window.location.href = "taller-robotica-interactivo.html";
+                window.location.href = tallerData.interactiveLink;
             };
 
             return (
@@ -82,7 +83,7 @@
                         </div>
                     </header>
 
-                    {/* Contenido Principal con Card Estilo Glassmorphism */}
+                    {/* Contenido Principal */}
                     <main className="talleres-container" style={{ maxWidth: '750px' }}>
                         <article className="taller-card" style={{ cursor: 'default', padding: '1.5rem', width: '100%' }}>
                             
@@ -130,7 +131,7 @@
                                                 padding: '0.75rem 1rem',
                                                 borderRadius: '8px',
                                                 display: 'flex',
-                                                justify: 'space-between',
+                                                justifyContent: 'space-between',
                                                 alignItems: 'center'
                                             }}
                                         >
@@ -145,7 +146,7 @@
                                 </div>
                             </div>
 
-                            {/* Botón Principal Enlazado a 'taller-robotica-interactivo.html' */}
+                            {/* Botón Principal Enlazado */}
                             <button 
                                 className="btn-add-action" 
                                 onClick={handleStartInteractiveTaller}
