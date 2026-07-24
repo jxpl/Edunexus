@@ -31,12 +31,18 @@
                 guides: [
                     { id: 1, name: "Guía 1: Introducción al Método Científico.pdf", size: "1.2 MB" },
                     { id: 2, name: "Guía 2: Plantilla de Laboratorio y Registro.pdf", size: "850 KB" }
-                ]
+                ],
+                interactiveLink: "taller-interactivo.html" // <--- Enlace al taller interactivo
             };
 
-            // Regresar a la cuadrícula de talleres
+            // Regresar a la cuadrícula general de talleres
             const handleBackToTalleres = () => {
                 window.location.href = "talleres.html";
+            };
+
+            // Redirigir a la actividad interactiva
+            const handleStartInteractive = () => {
+                window.location.href = tallerData.interactiveLink;
             };
 
             return (
@@ -125,7 +131,7 @@
                                                 padding: '0.75rem 1rem',
                                                 borderRadius: '8px',
                                                 display: 'flex',
-                                                justify: 'space-between',
+                                                justifyContent: 'space-between',
                                                 alignItems: 'center'
                                             }}
                                         >
@@ -143,6 +149,7 @@
                             {/* Botón Principal de Inicio de Taller */}
                             <button 
                                 className="btn-add-action" 
+                                onClick={handleStartInteractive}
                                 style={{
                                     marginTop: '1.8rem',
                                     width: '100%',

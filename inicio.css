@@ -125,12 +125,43 @@ body {
     font-weight: 800;
     letter-spacing: -0.02em;
     text-align: center;
-    background: linear-gradient(to right, #ffffff, var(--text-muted));
+    
+    /* Degradado enriquecido entre tonos de Azul, Índigo, Morado y Violeta Neón */
+    background: linear-gradient(
+        -45deg, 
+        var(--accent-cyan), 
+        var(--accent-indigo), 
+        #a855f7, 
+        #ec4899, 
+        var(--accent-cyan)
+    );
+    
+    /* Amplía el tamaño del gradiente para permitir desplazamiento */
+    background-size: 300% 300%;
+    
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 0.5rem;
+    
+    /* Resplandor luminoso neón */
+    filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.45));
+    
+    /* Aplica la animación continua */
+    animation: gradientMove 6s ease infinite;
 }
 
+/* Patrón de movimiento continuo del gradiente */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 .news-banner {
     background: var(--news-bg);
     border: 1px solid var(--border-glow);
