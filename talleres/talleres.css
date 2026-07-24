@@ -1,0 +1,233 @@
+/* ==========================================
+   1. VARIABLES Y ESTILOS GENERALES
+   ========================================== */
+:root {
+    --bg-dark: #263d74;               /* Azul noche oscuro */
+    --card-bg: rgba(30, 41, 59, 0.6);  /* Cristal esmerilado translúcido */
+    --border-glow: rgba(56, 189, 248, 0.2); /* Borde cyan translúcido */
+    
+    --accent-cyan: #38bdf8;           /* Cyan neón */
+    --accent-indigo: #818cf8;         /* Índigo brillante */
+    --accent-emerald: #34d399;        /* Verde esmeralda */
+    
+    --text-main: #f8fafc;             /* Texto principal claro */
+    --text-muted: #94a3b8;            /* Texto secundario */
+    
+    --shadow-glow: 0 0 25px rgba(56, 189, 248, 0.25);
+    --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--text-main);
+    line-height: 1.6;
+    background-color: var(--bg-dark);
+
+    /* FONDO DINÁMICO FUTURISTA */
+    background-image: 
+        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(129, 140, 248, 0.18) 0%, transparent 45%),
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* ==========================================
+   2. HEADER Y BARRA DE NAVEGACIÓN
+   ========================================== */
+.top-bar {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-glow);
+    padding: 1rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.app-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: lowercase;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    position: relative;
+}
+
+.icon-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-main);
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: all var(--transition-fast);
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+.search-input {
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-glow);
+    background: rgba(30, 41, 59, 0.9);
+    color: var(--text-main);
+    outline: none;
+    font-size: 0.9rem;
+}
+
+/* ==========================================
+   3. MENÚ DESPLEGABLE (HAMBURGUESA)
+   ========================================== */
+.dropdown-menu {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 220px;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid var(--border-glow);
+    backdrop-filter: blur(16px);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 200;
+}
+
+.dropdown-menu a {
+    color: var(--text-main);
+    text-decoration: none;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background var(--transition-fast);
+}
+
+.dropdown-menu a:hover {
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+}
+
+.btn-add-action {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 0.8rem 1.2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.btn-add-action:hover {
+    background: rgba(52, 211, 153, 0.2);
+    color: var(--accent-emerald);
+}
+
+/* ==========================================
+   4. ESTRUCTURA Y CUADRÍCULA 2 COLUMNAS
+   ========================================== */
+.talleres-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.talleres-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+}
+
+.taller-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-glow);
+    border-radius: 12px;
+    padding: 1rem;
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.taller-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-cyan);
+    box-shadow: var(--shadow-glow);
+    background: rgba(30, 41, 59, 0.85);
+}
+
+.card-image-wrapper {
+    width: 100%;
+    height: 160px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+    text-transform: lowercase;
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-muted);
+}
+
+/* RESPONSIVE */
+@media (max-width: 550px) {
+    .talleres-grid {
+        grid-template-columns: 1fr;
+    }
+}
