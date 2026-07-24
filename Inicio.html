@@ -5,98 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="inicio.css">
     <title>EduNexus - Menú Principal</title>
-    <!-- VINCULACIÓN DEL CSS COMPLETAMENTE INDEPENDIENTE -->
     <link rel="stylesheet" href="styles.css">
+    
     <!-- React, ReactDOM y Babel por CDN -->
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
-    <!-- Contenedor donde React renderizará la app -->
     <div id="root"></div>
 
-    <!-- Código React con las imágenes web aplicadas -->
     <script type="text/babel">
         function MainMenu() {
-            // Se agregaron las nuevas imágenes y la propiedad 'link' dedicada para navegación limpia
+            // PASO 1: Declarar estados para la búsqueda
+            const [searchTerm, setSearchTerm] = React.useState('');
+            const [showSearch, setShowSearch] = React.useState(false);
+
             const menuItems = [
-                { 
-                    id: 1, 
-                    title: "GUÍAS", 
-                    imageUrl: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=150&auto=format&fit=crop&q=80", 
-                    alt: "Guías",
-                    link: "./guias/guias.html" // Ruta de ejemplo
-                },
-                { 
-                    id: 2, 
-                    title: "CLASES", 
-                    imageUrl: "https://images.unsplash.com/photo-1588072432836-e10032774350?w=150&auto=format&fit=crop&q=80", 
-                    alt: "Clases",
-                    link: "./clases/clases.html" 
-                },
-                { 
-                    id: 3, 
-                    title: "TALLERES", 
-                    imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=150&auto=format&fit=crop&q=80", 
-                    alt: "Talleres",
-                    link: "./talleres/talleres.html"
-                },
-                { 
-                    id: 4, 
-                    title: "MATERIAS COMPLEMENTARIAS", 
-                    imageUrl: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=150&auto=format&fit=crop&q=80", 
-                    alt: "Materias Complementarias",
-                    link: "./materias/materias.html"
-                },
-                { 
-                    id: 5, 
-                    title: "PROGRESO", // Limpiamos el texto HTML de aquí
-                    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=150&auto=format&fit=crop&q=80", 
-                    alt: "Progreso",
-                    link: "./progreso/progreso.html" // El enlace ahora se maneja de forma nativa
-                },
-                { 
-                    id: 6, 
-                    title: "DIPLOMAS", 
-                    imageUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=150&auto=format&fit=crop&q=80", 
-                    alt: "Diplomas",
-                    link: "./diplomas/diplomas.html"
-                }
+                { id: 1, title: "GUÍAS", imageUrl: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=150&auto=format&fit=crop&q=80", alt: "Guías", link: "./guias/guias.html" },
+                { id: 2, title: "CLASES", imageUrl: "https://images.unsplash.com/photo-1588072432836-e10032774350?w=150&auto=format&fit=crop&q=80", alt: "Clases", link: "./clases/clases.html" },
+                { id: 3, title: "TALLERES", imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=150&auto=format&fit=crop&q=80", alt: "Talleres", link: "./talleres/talleres.html" },
+                { id: 4, title: "MATERIAS COMPLEMENTARIAS", imageUrl: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=150&auto=format&fit=crop&q=80", alt: "Materias Complementarias", link: "./materias/materias.html" },
+                { id: 5, title: "PROGRESO", imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=150&auto=format&fit=crop&q=80", alt: "Progreso", link: "./progreso/progreso.html" },
+                { id: 6, title: "DIPLOMAS", imageUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=150&auto=format&fit=crop&q=80", alt: "Diplomas", link: "./diplomas/diplomas.html" }
             ];
 
+            // PASO 3: Filtrar los ítems según lo ingresado en searchTerm
+            const filteredItems = menuItems.filter(item =>
+                item.title.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+
             return (
-                <div class="dashboard-layout">
-                    <header class="top-bar">
-                        <div class="top-bar-left">
-                            <button class="icon-btn" aria-label="Menú">☰</button>
-                            <span class="app-title">EduNexus</span>
+                <div className="dashboard-layout">
+                    <header className="top-bar">
+                        <div className="top-bar-left">
+                            <button className="icon-btn" aria-label="Menú">☰</button>
+                            <span className="app-title">EduNexus</span>
                         </div>
-                        <div class="top-bar-right">
-                            <button class="icon-btn" aria-label="Buscar">🔍</button>
+                        
+                        {/* PASO 2: Contenedor con la barra de búsqueda y la lupa */}
+                        <div className="top-bar-right" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            {showSearch && (
+                                <input
+                                    type="text"
+                                    placeholder="Buscar..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    autoFocus
+                                    style={{
+                                        padding: '5px 10px',
+                                        borderRadius: '4px',
+                                        border: '1px solid #ccc',
+                                        outline: 'none'
+                                    }}
+                                />
+                            )}
+                            <button 
+                                className="icon-btn" 
+                                aria-label="Buscar" 
+                                onClick={() => setShowSearch(!showSearch)}
+                                style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                            </button>
                         </div>
                     </header>
-                    <main class="main-container">
-                        <section class="news-banner">
-                            <h1 class="menu-title">Menú Principal</h1>
-                            <div class="news-box">
+
+                    <main className="main-container">
+                        <section className="news-banner">
+                            <h1 className="menu-title">Menú Principal</h1>
+                            <div className="news-box">
                                 <h2>NOTICIAS Y ACTUALIZACIONES RECIENTES</h2>
                                 <p>
                                     Se han agregado actualizaciones en algunas guías y talleres para elaborar y se han subido nuevas tareas.
                                 </p>
                             </div>
                         </section>
-                        <section class="menu-grid">
-                            {menuItems.map(item => (
-                                <a key={item.id} href={item.link} class="grid-card-link" style={{ textDecoration: 'none', color: 'inherit' }}>
-                                    <div class="grid-card">
-                                        <div class="card-image-wrapper">
-                                            <img src={item.imageUrl} alt={item.alt} class="card-img" />
+
+                        <section className="menu-grid">
+                            {/* Renderizamos el arreglo filtrado en lugar del original */}
+                            {filteredItems.length > 0 ? (
+                                filteredItems.map(item => (
+                                    <a key={item.id} href={item.link} className="grid-card-link" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <div className="grid-card">
+                                            <div className="card-image-wrapper">
+                                                <img src={item.imageUrl} alt={item.alt} className="card-img" />
+                                            </div>
+                                            <h3 className="card-title">{item.title}</h3>
                                         </div>
-                                        <h3 class="card-title">{item.title}</h3>
-                                    </div>
-                                </a>
-                            ))}
+                                    </a>
+                                ))
+                            ) : (
+                                <p style={{ gridColumn: '1 / -1', textAlign: 'center', opacity: 0.7 }}>
+                                    No se encontraron resultados para "{searchTerm}"
+                                </p>
+                            )}
                         </section>
                     </main>
                 </div>

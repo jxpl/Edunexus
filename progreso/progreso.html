@@ -60,7 +60,16 @@
                 description: "Progreso: 5 de 15 lecciones completadas (33%).",
                 lessons: "5/15",
                 rating: "33%",
-                url: "lenguas.html" 
+                url: "lenguas.html"
+            },
+            {
+                id: 4,
+                title: "Materias Complementarias",
+                category: "Complementarias",
+                description: "Progreso: 6 de 15 lecciones completadas (40%).",
+                lessons: "6/15",
+                rating: "40%",
+                url: "complementarias.html"
             }
         ];
 
@@ -78,31 +87,14 @@
                                 <div className="card-content">
                                     <span className="course-category">{course.category}</span>
                                     
-                                    <h3>
-                                        {course.url !== "#" ? (
-                                            <a href={course.url} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                                {course.title}
-                                            </a>
-                                        ) : (
-                                            course.title
-                                        )}
-                                    </h3>
+                                    <h3>{course.title}</h3>
                                     
                                     <p>{course.description}</p>
                                     
                                     {course.url !== "#" && (
-                                        <a 
-                                            href={course.url} 
-                                            style={{
-                                                display: 'inline-block',
-                                                marginTop: '12px',
-                                                color: '#2563eb',
-                                                fontWeight: 'bold',
-                                                fontSize: '0.9rem',
-                                                textDecoration: 'none'
-                                            }}
-                                        >
-                                            Ver lecciones de {course.category} &rarr;
+                                        <a href={course.url} className="btn-enter">
+                                            <span>Ingresar al curso</span>
+                                            <span className="arrow">&rarr;</span>
                                         </a>
                                     )}
                                 </div>

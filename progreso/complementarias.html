@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduNexus - Ciencias</title>
+    <title>EduNexus - Materias Complementarias</title>
     
     <!-- CSS de estilos -->
     <link rel="stylesheet" href="progreso.css">
@@ -27,75 +27,66 @@
         </div>
     </header>
 
-    <div id="react-ciencias-section"></div>
+    <div id="react-complementarias-section"></div>
 
     <footer>
         <p>&copy; 2026 EduNexus. Todos los derechos reservados.</p>
     </footer>
 
     <script type="text/babel">
-        const cienciasData = {
-            title: "Curso de Ciencias",
-            category: "Ciencias",
-            overallProgress: 75,
-            lessonsCompleted: 18,
-            totalLessons: 24,
+        const complementariasData = {
+            title: "Materias Complementarias",
+            category: "Complementarias",
+            overallProgress: 40,
+            lessonsCompleted: 6,
+            totalLessons: 15,
             modules: [
                 {
                     id: 1,
-                    title: "Unidad 1: Biología Celular",
+                    title: "Unidad 1: Programación y Pensamiento Lógico",
                     status: "Completado",
-                    completedCount: 8,
-                    totalCount: 8,
+                    completedCount: 5,
+                    totalCount: 5,
                     lessons: [
-                        { name: "1.1 Estructura de la Célula", done: true },
-                        { name: "1.2 Membrana y Transporte", done: true },
-                        { name: "1.3 Respiración Celular", done: true },
-                        { name: "1.4 Fotosíntesis", done: true },
-                        { name: "1.5 Ciclo Celular y Mitosis", done: true },
-                        { name: "1.6 Meiosis y Reproducción", done: true },
-                        { name: "1.7 Genética y ADN", done: true },
-                        { name: "1.8 Síntesis de Proteínas", done: true }
+                        { name: "1.1 Introducción a los Algoritmos", done: true },
+                        { name: "1.2 Variables y Tipos de Datos", done: true },
+                        { name: "1.3 Estructuras de Control y Condicionales", done: true },
+                        { name: "1.4 Bucles y Ciclos de Repetición", done: true },
+                        { name: "1.5 Funciones y Modularización", done: true }
                     ]
                 },
                 {
                     id: 2,
-                    title: "Unidad 2: Química General",
-                    status: "Completado",
-                    completedCount: 8,
-                    totalCount: 8,
+                    title: "Unidad 2: Educación Financiera y Emprendimiento",
+                    status: "En Progreso",
+                    completedCount: 1,
+                    totalCount: 5,
                     lessons: [
-                        { name: "2.1 La Tabla Periódica", done: true },
-                        { name: "2.2 Enlaces Químicos", done: true },
-                        { name: "2.3 Estequiometría", done: true },
-                        { name: "2.4 Reacciones Químicas", done: true },
-                        { name: "2.5 Soluciones y Concentración", done: true },
-                        { name: "2.6 Ácidos y Bases", done: true },
-                        { name: "2.7 Termoquímica Básica", done: true },
-                        { name: "2.8 Gases Ideales", done: true }
+                        { name: "2.1 Presupuesto Personal y Ahorro", done: true },
+                        { name: "2.2 Gestión de Deudas e Interés Compuesto", done: false },
+                        { name: "2.3 Fundamentos de Inversión", done: false },
+                        { name: "2.4 Modelos de Negocio Básicos", done: false },
+                        { name: "2.5 Estrategias de Marketing Digital", done: false }
                     ]
                 },
                 {
                     id: 3,
-                    title: "Unidad 3: Física Clásica",
-                    status: "En Progreso",
-                    completedCount: 2,
-                    totalCount: 8,
+                    title: "Unidad 3: Habilidades Blandas y Metodología de Estudio",
+                    status: "Pendiente",
+                    completedCount: 0,
+                    totalCount: 5,
                     lessons: [
-                        { name: "3.1 Cinemática en 1D", done: true },
-                        { name: "3.2 Leyes de Newton", done: true },
-                        { name: "3.3 Trabajo y Energía", done: false },
-                        { name: "3.4 Impulso y Momento", done: false },
-                        { name: "3.5 Movimiento Circular", done: false },
-                        { name: "3.6 Gravitación Universal", done: false },
-                        { name: "3.7 Estática y Equilibrio", done: false },
-                        { name: "3.8 Fluidos e Hidrostática", done: false }
+                        { name: "3.1 Gestión Eficiente del Tiempo", done: false },
+                        { name: "3.2 Técnicas de Estudio Activo y Memoria", done: false },
+                        { name: "3.3 Comunicación Asertiva y Oratoria", done: false },
+                        { name: "3.4 Trabajo en Equipo y Liderazgo", done: false },
+                        { name: "3.5 Inteligencia Emocional y Gestión del Estrés", done: false }
                     ]
                 }
             ]
         };
 
-        function CienciasSection() {
+        function ComplementariasSection() {
             return (
                 <section className="courses-section">
                     <div className="section-header">
@@ -103,15 +94,15 @@
                             <span className="arrow">&larr;</span> Volver al Progreso
                         </a>
 
-                        <h2>{cienciasData.title}</h2>
-                        <p>Avance general: <strong>{cienciasData.overallProgress}%</strong> ({cienciasData.lessonsCompleted} de {cienciasData.totalLessons} lecciones)</p>
+                        <h2>{complementariasData.title}</h2>
+                        <p>Avance general: <strong>{complementariasData.overallProgress}%</strong> ({complementariasData.lessonsCompleted} de {complementariasData.totalLessons} lecciones)</p>
                     </div>
 
                     <div className="courses-grid">
-                        {cienciasData.modules.map(module => (
+                        {complementariasData.modules.map(module => (
                             <article key={module.id} className="course-card">
                                 <div className="card-content">
-                                    <span className="course-category">{cienciasData.category}</span>
+                                    <span className="course-category">{complementariasData.category}</span>
                                     <h3>{module.title}</h3>
                                     <p>Avance del módulo: {module.completedCount}/{module.totalCount} lecciones</p>
                                     
@@ -139,8 +130,8 @@
             );
         }
 
-        const root = ReactDOM.createRoot(document.getElementById('react-ciencias-section'));
-        root.render(<CienciasSection />);
+        const root = ReactDOM.createRoot(document.getElementById('react-complementarias-section'));
+        root.render(<ComplementariasSection />);
     </script>
 </body>
 </html>
