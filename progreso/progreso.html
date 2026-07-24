@@ -51,7 +51,7 @@
                 description: "Progreso: 9 de 18 lecciones completadas (50%).",
                 lessons: "9/18",
                 rating: "50%",
-                url: "#"
+                url: "matematicas.html"
             },
             {
                 id: 3,
@@ -60,7 +60,7 @@
                 description: "Progreso: 5 de 15 lecciones completadas (33%).",
                 lessons: "5/15",
                 rating: "33%",
-                url: "#"
+                url: "lenguas.html" 
             }
         ];
 
@@ -74,14 +74,18 @@
 
                     <div className="courses-grid">
                         {userProgress.map(course => (
-                            <article key={course.id} className="course-card" style={{ position: 'relative' }}>
+                            <article key={course.id} className="course-card">
                                 <div className="card-content">
                                     <span className="course-category">{course.category}</span>
                                     
                                     <h3>
-                                        <a href={course.url} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            {course.title}
-                                        </a>
+                                        {course.url !== "#" ? (
+                                            <a href={course.url} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                                {course.title}
+                                            </a>
+                                        ) : (
+                                            course.title
+                                        )}
                                     </h3>
                                     
                                     <p>{course.description}</p>
@@ -98,7 +102,7 @@
                                                 textDecoration: 'none'
                                             }}
                                         >
-                                            Ver lecciones de Ciencias &rarr;
+                                            Ver lecciones de {course.category} &rarr;
                                         </a>
                                     )}
                                 </div>

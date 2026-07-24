@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduNexus - Lenguas</title>
+    <title>EduNexus - Matemáticas</title>
     
     <!-- CSS de estilos -->
     <link rel="stylesheet" href="progreso.css">
@@ -27,66 +27,69 @@
         </div>
     </header>
 
-    <div id="react-lenguas-section"></div>
+    <div id="react-matematicas-section"></div>
 
     <footer>
         <p>&copy; 2026 EduNexus. Todos los derechos reservados.</p>
     </footer>
 
     <script type="text/babel">
-        const lenguasData = {
-            title: "Curso de Lenguas",
-            category: "Lenguas",
-            overallProgress: 33,
-            lessonsCompleted: 5,
-            totalLessons: 15,
+        const matematicasData = {
+            title: "Curso de Matemáticas",
+            category: "Matematicas",
+            overallProgress: 50,
+            lessonsCompleted: 9,
+            totalLessons: 18,
             modules: [
                 {
                     id: 1,
-                    title: "Unidad 1: Gramática Básica",
+                    title: "Unidad 1: Álgebra Básica",
                     status: "Completado",
-                    completedCount: 5,
-                    totalCount: 5,
+                    completedCount: 6,
+                    totalCount: 6,
                     lessons: [
-                        { name: "1.1 Sustantivos y Adjetivos", done: true },
-                        { name: "1.2 Verbos en Tiempo Presente", done: true },
-                        { name: "1.3 Estructura de la Oración", done: true },
-                        { name: "1.4 Artículos y Pronombres", done: true },
-                        { name: "1.5 Preposiciones Básicas", done: true }
+                        { name: "1.1 Operaciones con Fracciones y Decimales", done: true },
+                        { name: "1.2 Propiedades de los Exponentes", done: true },
+                        { name: "1.3 Expresiones Algebraicas y Simplificación", done: true },
+                        { name: "1.4 Ecuaciones de Primer Grado", done: true },
+                        { name: "1.5 Desigualdades Lineales", done: true },
+                        { name: "1.6 Sistemas de Ecuaciones 2x2", done: true }
                     ]
                 },
                 {
                     id: 2,
-                    title: "Unidad 2: Vocabulario y Conversación",
-                    status: "Pendiente",
-                    completedCount: 0,
-                    totalCount: 5,
+                    title: "Unidad 2: Geometría y Trigonometría",
+                    status: "En Progreso",
+                    completedCount: 3,
+                    totalCount: 6,
                     lessons: [
-                        { name: "2.1 Saludos y Presentaciones", done: false },
-                        { name: "2.2 Expresiones Cotidianas", done: false },
-                        { name: "2.3 Números y Fechas", done: false },
-                        { name: "2.4 En la Ciudad y Direcciones", done: false },
-                        { name: "2.5 En el Restaurante y Compras", done: false }
+                        { name: "2.1 Perímetros, Áreas y Volúmenes", done: true },
+                        { name: "2.2 Teorema de Pitágoras", done: true },
+                        { name: "2.3 Ángulos y Triángulos Semejantes", done: true },
+                        { name: "2.4 Funciones Trigonométricas Básicas", done: false },
+                        { name: "2.5 Ley de Senos y Cosenos", done: false },
+                        { name: "2.6 Identidades Trigonométricas", done: false }
                     ]
                 },
                 {
                     id: 3,
-                    title: "Unidad 3: Lectura y Comprensión",
+                    title: "Unidad 3: Funciones y Cálculo Introductorio",
                     status: "Pendiente",
                     completedCount: 0,
-                    totalCount: 5,
+                    totalCount: 6,
                     lessons: [
-                        { name: "3.1 Textos Breves e Informativos", done: false },
-                        { name: "3.2 Identificación de Ideas Principales", done: false },
-                        { name: "3.3 Conectores Textuales", done: false },
-                        { name: "3.4 Redacción de Ensayos Cortos", done: false },
-                        { name: "3.5 Análisis Literario Básico", done: false }
+                        { name: "3.1 Concepto de Función y Dominio", done: false },
+                        { name: "3.2 Funciones Lineales y Cuadráticas", done: false },
+                        { name: "3.3 Gráficas de Funciones", done: false },
+                        { name: "3.4 Introducción a los Límites", done: false },
+                        { name: "3.5 Concepto de la Derivada", done: false },
+                        { name: "3.6 Aplicaciones Básicas de la Derivada", done: false }
                     ]
                 }
             ]
         };
 
-        function LenguasSection() {
+        function MatematicasSection() {
             return (
                 <section className="courses-section">
                     <div className="section-header">
@@ -103,15 +106,15 @@
                             &larr; Volver a Progreso General
                         </a>
 
-                        <h2>{lenguasData.title}</h2>
-                        <p>Avance general: <strong>{lenguasData.overallProgress}%</strong> ({lenguasData.lessonsCompleted} de {lenguasData.totalLessons} lecciones)</p>
+                        <h2>{matematicasData.title}</h2>
+                        <p>Avance general: <strong>{matematicasData.overallProgress}%</strong> ({matematicasData.lessonsCompleted} de {matematicasData.totalLessons} lecciones)</p>
                     </div>
 
                     <div className="courses-grid">
-                        {lenguasData.modules.map(module => (
+                        {matematicasData.modules.map(module => (
                             <article key={module.id} className="course-card">
                                 <div className="card-content">
-                                    <span className="course-category">{lenguasData.category}</span>
+                                    <span className="course-category">{matematicasData.category}</span>
                                     <h3>{module.title}</h3>
                                     <p>Avance del módulo: {module.completedCount}/{module.totalCount} lecciones</p>
                                     
@@ -139,8 +142,8 @@
             );
         }
 
-        const root = ReactDOM.createRoot(document.getElementById('react-lenguas-section'));
-        root.render(<LenguasSection />);
+        const root = ReactDOM.createRoot(document.getElementById('react-matematicas-section'));
+        root.render(<MatematicasSection />);
     </script>
 </body>
 </html>
