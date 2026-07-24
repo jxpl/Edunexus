@@ -319,3 +319,103 @@ footer {
 .btn-back:hover .arrow {
     transform: translateX(-4px);
 }
+
+/* ==========================================
+   LISTA DE LECCIONES E ÍCONOS INTERACTIVOS (FONDO OSCURO)
+   ========================================== */
+.lessons-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+.lesson-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    margin-bottom: 4px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+    cursor: default;
+}
+
+/* Efecto hover sobre la fila entera */
+.lesson-item:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Resaltado blanco translúcido */
+    transform: translateX(3px);
+}
+
+/* Contenedor del ícono */
+.lesson-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* Ícono Check (Completado) */
+.check-icon {
+    width: 18px;
+    height: 18px;
+    color: #10b981; /* Verde brillante */
+    background-color: rgba(16, 185, 129, 0.2);
+    border-radius: 50%;
+    padding: 3px;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.lesson-item:hover .check-icon {
+    transform: scale(1.15) rotate(-5deg);
+    background-color: #10b981;
+    color: #ffffff;
+}
+
+/* Ícono Círculo (Pendiente) */
+.circle-icon {
+    width: 14px;
+    height: 14px;
+    border: 2px solid #ffffff; /* Borde blanco para alta visibilidad */
+    border-radius: 50%;
+    transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+
+.lesson-item:hover .circle-icon {
+    border-color: #60a5fa; /* Azul claro brillante al pasar el cursor */
+    transform: scale(1.15);
+    background-color: rgba(96, 165, 250, 0.3);
+}
+
+/* ==========================================
+   TEXTOS EN COLOR BLANCO Y ALTO CONTRASTE
+   ========================================== */
+
+/* Lección PENDIENTE: Texto blanco puro */
+.lesson-item.pending .lesson-name {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Lección COMPLETADA: Blanco translúcido pero totalmente visible */
+.lesson-item.completed .lesson-name {
+    text-decoration: line-through;
+    color: rgba(255, 255, 255, 0.75); /* Blanco al 75% de opacidad para diferenciarlo */
+    font-weight: 500;
+}
+
+/* Títulos y textos adicionales de las tarjetas */
+.course-card h3 {
+    color: #ffffff; /* Título en blanco puro */
+}
+
+.course-card p {
+    color: #e2e8f0; /* Texto secundario en gris muy claro */
+}
+
+.course-category {
+    color: #93c5fd; /* Categoría en azul claro suave */
+    font-weight: 700;
+}
