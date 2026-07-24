@@ -3,7 +3,7 @@
    ========================================== */
 :root {
     /* Paleta cromática vibrante */
-    --bg-dark: #0f172a;               /* Azul noche muy oscuro */
+    --bg-dark: #263d74;               /* Azul noche muy oscuro */
     --card-bg: rgba(30, 41, 59, 0.6);  /* Cristal esmerilado translúcido */
     --border-glow: rgba(56, 189, 248, 0.2); /* Borde cyan translúcido */
     
@@ -276,4 +276,46 @@ footer {
     .courses-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* ==========================================
+   ESTILOS DE BOTONES (.btn-enter y .btn-back)
+   ========================================== */
+.btn-enter {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #dbeafe;
+    color: var(--primary-color);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-enter:hover {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.btn-enter .arrow {
+    transition: transform 0.2s ease;
+}
+
+.btn-enter:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* Modificación para el botón de regreso */
+.btn-back {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+/* Animación de la flecha hacia la izquierda al presionar/hover */
+.btn-back:hover .arrow {
+    transform: translateX(-4px);
 }

@@ -92,11 +92,12 @@
         function MatematicasSection() {
             return (
                 <section className="courses-section">
-                    <div className="section-header">
-                        <a href="progreso.html" className="btn-back">
-                            <span className="arrow">&larr;</span> Volver al Progreso
-                        </a>
+                    <a href="progreso.html" className="btn-enter btn-back">
+                        <span className="arrow">&larr;</span>
+                        <span>Volver al Progreso</span>
+                    </a>
 
+                    <div className="section-header">
                         <h2>{matematicasData.title}</h2>
                         <p>Avance general: <strong>{matematicasData.overallProgress}%</strong> ({matematicasData.lessonsCompleted} de {matematicasData.totalLessons} lecciones)</p>
                     </div>

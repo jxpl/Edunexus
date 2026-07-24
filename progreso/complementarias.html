@@ -89,11 +89,13 @@
         function ComplementariasSection() {
             return (
                 <section className="courses-section">
-                    <div className="section-header">
-                        <a href="progreso.html" className="btn-back">
-                            <span className="arrow">&larr;</span> Volver al Progreso
-                        </a>
+                    {/* Botón de regreso con estructura unificada */}
+                    <a href="progreso.html" className="btn-enter btn-back">
+                        <span className="arrow">&larr;</span>
+                        <span>Volver al Progreso</span>
+                    </a>
 
+                    <div className="section-header">
                         <h2>{complementariasData.title}</h2>
                         <p>Avance general: <strong>{complementariasData.overallProgress}%</strong> ({complementariasData.lessonsCompleted} de {complementariasData.totalLessons} lecciones)</p>
                     </div>

@@ -192,3 +192,44 @@ footer {
         gap: 1rem;
     }
 }
+
+/* ==========================================
+   BOTÓN DE REGRESO (ESTILO NEÓN / GLASS)
+   ========================================== */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.6rem 1.2rem;
+    margin-bottom: 1.5rem;
+    background: rgba(30, 41, 59, 0.6);
+    color: var(--accent-cyan);
+    border: 1px solid var(--border-glow);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-fast);
+}
+
+/* Efecto al pasar el cursor (Hover) */
+.btn-back:hover {
+    background: rgba(56, 189, 248, 0.15);
+    color: #ffffff;
+    border-color: var(--accent-cyan);
+    box-shadow: var(--shadow-glow);
+    transform: translateX(-4px);
+}
+
+/* Animación de la flecha al hacer hover */
+.btn-back .arrow {
+    display: inline-block;
+    transition: transform var(--transition-fast);
+}
+
+.btn-back:hover .arrow {
+    transform: translateX(-4px);
+}
