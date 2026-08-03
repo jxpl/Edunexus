@@ -1,64 +1,130 @@
-/* ==========================================
-   1. VARIABLES Y ESTILOS GENERALES
-   ========================================== */
+/* =========================================================
+   PALETA 100% MONOCROMÁTICA (SOLO NEGRO, BLANCO Y GRIS)
+   ========================================================= */
 :root {
-    /* Paleta cromática vibrante */
-    --bg-dark: #263d74;               /* Azul noche muy oscuro */
-    --card-bg: rgba(30, 41, 59, 0.6);  /* Cristal esmerilado translúcido */
-    --border-glow: rgba(56, 189, 248, 0.2); /* Borde cyan translúcido */
+    --bg-dark: #121212;                     /* Negro profundo */
+    --card-bg: rgba(255, 255, 255, 0.05);   /* Cristal translúcido blanco */
+    --border-glow: rgba(255, 255, 255, 0.2); /* Borde blanco sutil */
     
-    --accent-cyan: #38bdf8;           /* Cyan neón */
-    --accent-indigo: #818cf8;         /* Índigo brillante */
-    --accent-emerald: #34d399;        /* Verde esmeralda */
+    --accent-cyan: #ffffff;                 /* Blanco puro */
+    --accent-indigo: #d1d5db;               /* Gris claro */
+    --accent-emerald: #6b7280;              /* Gris medio */
     
-    --text-main: #f8fafc;             /* Texto principal ultra claro */
-    --text-muted: #94a3b8;            /* Texto secundario */
+    --text-main: #ffffff;                   /* Texto blanco */
+    --text-muted: #9ca3af;                  /* Texto gris */
     
-    --shadow-glow: 0 0 25px rgba(56, 189, 248, 0.25);
+    --shadow-glow: 0 0 20px rgba(255, 255, 255, 0.1);
     --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Aplicación forzada de los 3 colores */
+body, 
+.dashboard-layout {
+    background-color: var(--bg-dark) !important;
+    color: var(--text-main) !important;
+}
 
+/* Barra superior */
+.top-bar {
+    background-color: #1a1a1a !important;
+    border-bottom: 1px solid var(--border-glow) !important;
+}
+
+.app-title,
+.icon-btn {
+    color: var(--text-main) !important;
+    border-color: var(--border-glow) !important;
+}
+
+.icon-btn:hover {
+    background-color: #2a2a2a !important;
+}
+
+/* Tarjetas y Contenedores */
+.news-box,
+.grid-card {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--border-glow) !important;
+    box-shadow: var(--shadow-glow) !important;
+}
+
+.grid-card-link:hover .grid-card {
+    border-color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Textos e Títulos */
+.menu-title,
+.card-title {
+    color: var(--text-main) !important;
+}
+
+.news-box h2 {
+    color: var(--accent-indigo) !important;
+}
+
+.news-box p,
+.grid-card p {
+    color: var(--text-muted) !important;
+}
+
+/* Imágenes en blanco y negro puro */
+.card-img {
+    filter: grayscale(100%) !important;
+    transition: filter var(--transition-fast);
+}
+
+.grid-card-link:hover .card-img {
+    filter: grayscale(0%) !important;
+}:root {
+    /* Paleta monocromática elegante (Gris / Blanco / Negro) */
+    --bg-dark: #0f172a;               /* Fondo general: Gris carbón profundo */
+    --card-bg: rgba(30, 41, 59, 0.5);  /* Cristal esmerilado en gris medio */
+    --border-glow: rgba(255, 255, 255, 0.15); /* Borde sutil en blanco translúcido */
+    
+    --accent-cyan: #ffffff;           /* Acento principal: Blanco puro */
+    --accent-indigo: #e2e8f0;         /* Acento secundario: Gris claro brillante */
+    --accent-emerald: #94a3b8;        /* Acento de contraste: Gris neutro medio */
+    
+    --text-main: #f8fafc;             /* Texto principal: Blanco casi puro */
+    --text-muted: #94a3b8;            /* Texto secundario: Gris apagado */
+    
+    --shadow-glow: 0 0 25px rgba(255, 255, 255, 0.08); /* Resplandor blanco suave */
+    --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Estilos Generales Base */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    color: var(--text-main);
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
     background-color: var(--bg-dark);
-
-    /* FONDO DINÁMICO: Luces de Neón Radial y Malla Futurista */
-    background-image: 
-        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.18) 0%, transparent 45%),
-        radial-gradient(circle at 85% 80%, rgba(129, 140, 248, 0.18) 0%, transparent 45%),
-        radial-gradient(circle at 50% 50%, rgba(52, 211, 153, 0.08) 0%, transparent 60%),
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
-    background-attachment: fixed;
+    color: var(--text-main);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    min-height: 100vh;
 }
 
-/* ==========================================
-   2. HEADER Y NAVEGACIÓN FUTURISTA
-   ========================================== */
+/* Layout y TopBar */
+.dashboard-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .top-bar {
-    background: rgba(15, 23, 42, 0.8);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 1rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 100;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-glow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .top-bar-left {
@@ -67,218 +133,140 @@ body {
     gap: 1rem;
 }
 
+.app-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--text-main);
+}
+
 .icon-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
+    border: 1px solid var(--border-glow);
     color: var(--text-main);
     padding: 0.5rem;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 1.1rem;
     transition: all var(--transition-fast);
 }
 
 .icon-btn:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: var(--accent-cyan);
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--text-main);
 }
 
-.app-title {
-    font-size: 1.6rem;
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+/* Input de Búsqueda Adaptado */
+.top-bar-right input[type="text"] {
+    background: rgba(15, 23, 42, 0.9) !important;
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-glow) !important;
+    border-radius: 6px !important;
+    padding: 6px 12px !important;
+    transition: border-color var(--transition-fast);
 }
 
-/* ==========================================
-   3. ESTRUCTURA Y BOTÓN DE REGRESO
-   ========================================== */
+.top-bar-right input[type="text"]:focus {
+    border-color: var(--text-main) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Sección Principal y Banners */
 .main-container {
     max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
     width: 100%;
-    margin: 2.5rem auto;
-    padding: 0 1.5rem;
-    flex: 1;
 }
 
-.classes-header {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
+.news-banner {
+    margin-bottom: 2rem;
 }
 
 .menu-title {
-    font-size: 2.2rem;
+    font-size: 2rem;
+    margin-bottom: 1rem;
     font-weight: 800;
-    background: linear-gradient(to right, #ffffff, var(--text-muted));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text-main);
 }
 
-.btn-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0.6rem 1.25rem;
-    background: rgba(15, 23, 42, 0.7);
-    color: var(--accent-cyan);
-    border: 1px solid var(--border-glow);
-    border-radius: 10px;
-    font-size: 0.9rem;
-    font-weight: 700;
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-    transition: all var(--transition-fast);
-}
-
-.btn-back:hover {
-    background: rgba(56, 189, 248, 0.15);
-    border-color: var(--accent-cyan);
-    color: #ffffff;
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
-    transform: translateX(-4px);
-}
-
-/* ==========================================
-   4. GRID Y TARJETAS DE CLASES EN GLASSMORPHISM
-   ========================================== */
-.classes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
-}
-
-.class-card {
+.news-box {
     background: var(--card-bg);
-    border: 1px solid var(--border-glow);
-    border-radius: 16px;
     backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glow);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-glow);
+}
+
+.news-box h2 {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    color: var(--accent-indigo);
+    margin-bottom: 0.5rem;
+}
+
+.news-box p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Grid de Clases / Tarjetas */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.grid-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-glow);
+    border-radius: 14px;
+    padding: 1.25rem;
+    transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    position: relative;
-    transition: all var(--transition-fast);
+    align-items: center;
 }
 
-.class-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--accent-cyan);
-    box-shadow: var(--shadow-glow);
-    background: rgba(30, 41, 59, 0.85);
+.grid-card-link:hover .grid-card {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), var(--shadow-glow);
 }
 
-/* Miniatura e Imagen */
-.class-thumbnail {
-    position: relative;
+/* Imagen de la tarjeta con filtro sutil */
+.card-image-wrapper {
     width: 100%;
-    height: 180px;
+    height: 160px;
+    border-radius: 8px;
     overflow: hidden;
+    margin-bottom: 1rem;
+    background: #1e293b;
 }
 
-.class-thumbnail img {
+.card-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--transition-fast);
+    filter: grayscale(20%) contrast(105%);
+    transition: filter var(--transition-fast), transform var(--transition-fast);
 }
 
-.class-card:hover .class-thumbnail img {
-    transform: scale(1.05);
+.grid-card-link:hover .card-img {
+    filter: grayscale(0%);
+    transform: scale(1.03);
 }
 
-.class-duration {
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-    background: rgba(15, 23, 42, 0.85);
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
     color: var(--accent-cyan);
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.25rem 0.65rem;
-    border-radius: 20px;
-    backdrop-filter: blur(6px);
+    text-align: center;
+    letter-spacing: 0.5px;
 }
 
-/* Contenido de la Tarjeta */
-.class-content {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.class-subject {
-    display: inline-block;
-    align-self: flex-start;
-    background: rgba(56, 189, 248, 0.15);
-    color: var(--accent-cyan);
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.35rem 0.85rem;
-    border-radius: 20px;
-    margin-bottom: 0.85rem;
-    border: 1px solid rgba(56, 189, 248, 0.3);
-}
-
-.class-title-text {
-    font-size: 1.25rem;
-    color: #ffffff;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    line-height: 1.35;
-}
-
-.class-instructor {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-}
-
-/* ==========================================
-   5. BOTÓN NEÓN "VER CLASE"
-   ========================================== */
-.btn-watch {
-    margin-top: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 0.75rem 1.25rem;
-    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo));
-    color: #ffffff;
-    font-size: 0.9rem;
-    font-weight: 700;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
-    transition: all var(--transition-fast);
-}
-
-.btn-watch:hover {
-    filter: brightness(1.15);
-    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
-    transform: translateY(-2px);
-}
-
-/* ==========================================
-   6. RESPONSIVE DESIGN
-   ========================================== */
-@media (max-width: 640px) {
-    .classes-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
-    .classes-grid {
-        grid-template-columns: 1fr;
-    }
+.grid-card p {
+    color: var(--text-muted) !important;
 }
