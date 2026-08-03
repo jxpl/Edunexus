@@ -61,10 +61,17 @@
                                 className="icon-btn" 
                                 aria-label="Volver al detalle"
                                 onClick={handleBackToDetail}
+                                title="Volver al detalle"
                             >
-                                ←
+                                ⬅
                             </button>
-                            <span className="app-title">simulación robótica</span>
+                            <span 
+                                className="app-title"
+                                onClick={handleBackToDetail}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                simulación robótica
+                            </span>
                         </div>
 
                         <div className="top-bar-right">

@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduNexus - Materias Complementarias</title>
+    <title>EduNexus - Clases</title>
 
-    <!-- Subimos un nivel en la carpeta para encontrar las hojas de estilo de la raíz -->
+    <!-- Hacemos referencia a los estilos desde la subcarpeta clases/ -->
     <link rel="stylesheet" href="../inicio.css">
     <link rel="stylesheet" href="../styles.css">
 
@@ -20,36 +20,39 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        function MateriasMenu() {
+        function Clases() {
             const [searchTerm, setSearchTerm] = React.useState('');
             const [showSearch, setShowSearch] = React.useState(false);
 
-            const materiasItems = [
-                { id: 1, title: "PROGRAMACIÓN WEB", imageUrl: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=150&auto=format&fit=crop&q=80", alt: "Programación Web", link: "./programacion.html" },
-                { id: 2, title: "DISEÑO UX / UI", imageUrl: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=150&auto=format&fit=crop&q=80", alt: "Diseño UX/UI", link: "./diseno.html" },
-                { id: 3, title: "INGLÉS TÉCNICO", imageUrl: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=150&auto=format&fit=crop&q=80", alt: "Inglés Técnico", link: "./ingles.html" },
-                { id: 4, title: "BASES DE DATOS", imageUrl: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=150&auto=format&fit=crop&q=80", alt: "Bases de Datos", link: "./bd.html" },
-                { id: 5, title: "CIENCIA DE DATOS", imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=150&auto=format&fit=crop&q=80", alt: "Ciencia de Datos", link: "./data.html" },
-                { id: 6, title: "LIDERAZGO Y GESTIÓN", imageUrl: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=150&auto=format&fit=crop&q=80", alt: "Liderazgo", link: "./liderazgo.html" }
+            // Lista de materias/clases disponibles
+            const clasesItems = [
+                { id: 1, title: "MATEMÁTICAS", teacher: "Prof. Carlos Gómez", imageUrl: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=300&auto=format&fit=crop&q=80", link: "#" },
+                { id: 2, title: "HISTORIA", teacher: "Dra. Elena Rostova", imageUrl: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=300&auto=format&fit=crop&q=80", link: "#" },
+                { id: 3, title: "CIENCIAS Y FÍSICA", teacher: "Ing. Roberto Martínez", imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=300&auto=format&fit=crop&q=80", link: "#" },
+                { id: 4, title: "LITERATURA", teacher: "Lic. Sofía Morales", imageUrl: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=300&auto=format&fit=crop&q=80", link: "#" },
+                { id: 5, title: "PROGRAMACIÓN", teacher: "Ing. Ana Silva", imageUrl: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=300&auto=format&fit=crop&q=80", link: "#" },
+                { id: 6, title: "INGLÉS", teacher: "Prof. John Doe", imageUrl: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=300&auto=format&fit=crop&q=80", link: "#" }
             ];
 
-            const filteredMaterias = materiasItems.filter(item =>
-                item.title.toLowerCase().includes(searchTerm.toLowerCase())
+            const filteredClasses = clasesItems.filter(item =>
+                item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                item.teacher.toLowerCase().includes(searchTerm.toLowerCase())
             );
 
-            // Función explícita de navegación JS
             const handleNavigate = (url) => {
-                window.location.href = url;
+                if (url !== '#') {
+                    window.location.href = url;
+                } else {
+                    alert("Redirigiendo al contenido de la clase...");
+                }
             };
 
-            // Función para volver al menú principal (igual a la del segundo código)
             const handleGoBack = () => {
-                window.location.href = "../inicio.html";
+                window.location.href = "../Inicio.html"; // O la ruta de tu menú principal
             };
 
             return (
                 <div className="dashboard-layout">
-                    {/* Barra Superior */}
                     <header className="top-bar">
                         <div className="top-bar-left">
                             <button className="icon-btn" aria-label="Volver" onClick={handleGoBack} title="Volver al menú">
@@ -64,7 +67,7 @@
                             {showSearch && (
                                 <input
                                     type="text"
-                                    placeholder="Buscar materia..."
+                                    placeholder="Buscar clase o profesor..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                     autoFocus
@@ -90,22 +93,20 @@
                         </div>
                     </header>
 
-                    {/* Contenido Principal */}
                     <main className="main-container">
                         <section className="news-banner">
-                            <h1 className="menu-title">Materias Complementarias</h1>
-                            
+                            <h1 className="menu-title">Módulo de Clases</h1>
                             <div className="news-box">
-                                <h2>ASIGNATURAS OPTATIVAS DISPONIBLES</h2>
+                                <h2>AULA VIRTUAL Y CONTENIDO EN VIVO</h2>
                                 <p>
-                                    Selecciona una de las materias complementarias para acceder a sus temas, materiales de estudio y actividades asociadas.
+                                    Selecciona una materia para ingresar a las sesiones en directo, grabaciones y material explicativo.
                                 </p>
                             </div>
                         </section>
 
                         <section className="menu-grid">
-                            {filteredMaterias.length > 0 ? (
-                                filteredMaterias.map(item => (
+                            {filteredClasses.length > 0 ? (
+                                filteredClasses.map(item => (
                                     <div 
                                         key={item.id} 
                                         onClick={() => handleNavigate(item.link)} 
@@ -119,15 +120,18 @@
                                     >
                                         <div className="grid-card">
                                             <div className="card-image-wrapper">
-                                                <img src={item.imageUrl} alt={item.alt} className="card-img" />
+                                                <img src={item.imageUrl} alt={item.title} className="card-img" />
                                             </div>
                                             <h3 className="card-title">{item.title}</h3>
+                                            <p style={{ fontSize: '0.85rem', opacity: 0.8, marginTop: '4px', textAlign: 'center' }}>
+                                                {item.teacher}
+                                            </p>
                                         </div>
                                     </div>
                                 ))
                             ) : (
                                 <p style={{ gridColumn: '1 / -1', textAlign: 'center', opacity: 0.7 }}>
-                                    No se encontraron materias para "{searchTerm}"
+                                    No se encontraron clases que coincidan con "{searchTerm}"
                                 </p>
                             )}
                         </section>
@@ -137,7 +141,7 @@
         }
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<MateriasMenu />);
+        root.render(<Clases />);
     </script>
 </body>
 

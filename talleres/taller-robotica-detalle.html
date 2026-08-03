@@ -54,10 +54,17 @@
                                 className="icon-btn" 
                                 aria-label="Volver a talleres"
                                 onClick={handleBackToTalleres}
+                                title="Volver a talleres"
                             >
-                                ←
+                                ⬅
                             </button>
-                            <span className="app-title">{tallerData.title}</span>
+                            <span 
+                                className="app-title"
+                                onClick={handleBackToTalleres}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                {tallerData.title}
+                            </span>
                         </div>
 
                         <div className="top-bar-right">
