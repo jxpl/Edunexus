@@ -5,230 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduNexus - Actividad Interactiva de Robótica</title>
 
-    <!-- HOJA DE ESTILOS FUTURISTA COMPARTIDA -->
+    <!-- HOJA DE ESTILOS FUTURISTA -->
     <link rel="stylesheet" href="talleres.css">
-    
-    <!-- React, ReactDOM y Babel por CDN -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
 
-    <div id="root"></div>
+    <div class="talleres-page">
+        <!-- Encabezado Superior -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <a href="taller-robotica-detalle.html" class="icon-btn" aria-label="Volver al detalle" title="Volver al detalle">
+                    ⬅
+                </a>
+                <a href="taller-robotica-detalle.html" class="app-title">
+                    simulación robótica
+                </a>
+            </div>
 
-    <script type="text/babel">
-        function TallerRoboticaInteractivoView() {
-            const [showMenu, setShowMenu] = React.useState(false);
-            const [selectedOption, setSelectedOption] = React.useState(null);
-            const [isSubmitted, setIsSubmitted] = React.useState(false);
+            <div class="top-bar-right">
+                <!-- Checkbox para mostrar/ocultar Búsqueda (Sin JS) -->
+                <input type="checkbox" id="toggle-search" class="state-toggle" hidden>
+                <input type="text" class="search-input" placeholder="Buscar taller...">
+                
+                <label for="toggle-search" class="icon-btn" aria-label="Buscar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </label>
 
-            // Pregunta de ejemplo del taller interactivo de Robótica
-            const questionData = {
-                id: 1,
-                title: "Desafío 1: Sensores y Ultrasonido",
-                prompt: "Estás programando un robot evasor de obstáculos usando un sensor ultrasónico (HC-SR04). ¿Qué componente del sensor emite la onda de alta frecuencia para medir la distancia?",
-                options: [
-                    { id: 'A', text: "A) Pin Echo (Receptor)" },
-                    { id: 'B', text: "B) Pin Trig (Disparador / Emisor)", correct: true },
-                    { id: 'C', text: "C) Pin VCC (Alimentación)" },
-                    { id: 'D', text: "D) ServoMotor de giro" }
-                ],
-                explanation: "¡Excelente! El pin 'Trig' (Trigger) envía el pulso de ultrasonido, mientras que el pin 'Echo' recibe el rebote para calcular la distancia."
-            };
+                <!-- Checkbox para mostrar/ocultar Menú Hamburguesa (Sin JS) -->
+                <input type="checkbox" id="toggle-menu" class="state-toggle" hidden>
+                
+                <label for="toggle-menu" class="icon-btn" aria-label="Menú">
+                    ☰
+                </label>
 
-            const handleBackToDetail = () => {
-                window.location.href = "taller-robotica-detalle.html";
-            };
+                <!-- Capa invisible para cerrar el menú al hacer clic fuera -->
+                <label for="toggle-menu" class="overlay-close"></label>
 
-            const handleSubmit = () => {
-                if (selectedOption !== null) {
-                    setIsSubmitted(true);
-                }
-            };
+                <!-- Menú Desplegable Flotante -->
+                <nav class="dropdown-menu">
+                    <a href="../guias/guias.html">Guías</a>
+                    <a href="../clases/clases.html">Clases</a>
+                    <a href="#">Ocupaciones</a>
+                    <a href="../materias/materias.html">Materias complementarias</a>
+                    <a href="#" class="btn-add-action">+ Agregar</a>
+                </nav>
+            </div>
+        </header>
 
-            const handleReset = () => {
-                setSelectedOption(null);
-                setIsSubmitted(false);
-            };
-
-            return (
-                <div className="talleres-page">
-                    {/* Encabezado Superior */}
-                    <header className="top-bar">
-                        <div className="top-bar-left">
-                            <button 
-                                className="icon-btn" 
-                                aria-label="Volver al detalle"
-                                onClick={handleBackToDetail}
-                                title="Volver al detalle"
-                            >
-                                ⬅
-                            </button>
-                            <span 
-                                className="app-title"
-                                onClick={handleBackToDetail}
-                                style={{ cursor: 'pointer' }}
-                            >
-                                simulación robótica
-                            </span>
-                        </div>
-
-                        <div className="top-bar-right">
-                            <button
-                                className="icon-btn"
-                                aria-label="Menú"
-                                onClick={() => setShowMenu(!showMenu)}
-                            >
-                                ☰
-                            </button>
-
-                            {/* Menú Desplegable Flotante */}
-                            {showMenu && (
-                                <div className="dropdown-menu">
-                                    <a href="../guias/guias.html">Guías</a>
-                                    <a href="../clases/clases.html">Clases</a>
-                                    <a href="#">Ocupaciones</a>
-                                    <a href="../materias/materias.html">Materias complementarias</a>
-                                    <button className="btn-add-action">+ Agregar</button>
-                                </div>
-                            )}
-                        </div>
-                    </header>
-
-                    {/* Contenido Interactivo */}
-                    <main className="talleres-container" style={{ maxWidth: '700px' }}>
-                        <article className="taller-card" style={{ cursor: 'default', padding: '2rem', width: '100%' }}>
-                            
-                            {/* Barra de Progreso */}
-                            <div style={{ width: '100%', marginBottom: '1.5rem' }}>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.4rem' }}>
-                                    <span>Módulo 1 de 4</span>
-                                    <span>Progreso: 25%</span>
-                                </div>
-                                <div style={{ width: '100%', height: '8px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px', overflow: 'hidden' }}>
-                                    <div style={{ width: '25%', height: '100%', background: 'linear-gradient(90deg, var(--accent-cyan), var(--accent-indigo))' }}></div>
-                                </div>
-                            </div>
-
-                            {/* Título y Enunciado */}
-                            <h2 style={{ fontSize: '1.4rem', color: 'var(--accent-cyan)', marginBottom: '0.8rem' }}>
-                                🤖 {questionData.title}
-                            </h2>
-
-                            <p style={{ color: '#f8fafc', fontSize: '1.05rem', marginBottom: '1.5rem', lineHeight: '1.5' }}>
-                                {questionData.prompt}
-                            </p>
-
-                            {/* Opciones Seleccionables */}
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', width: '100%', marginBottom: '1.5rem' }}>
-                                {questionData.options.map((opt) => {
-                                    const isSelected = selectedOption === opt.id;
-                                    let optionStyle = {
-                                        background: 'rgba(15, 23, 42, 0.7)',
-                                        border: '1px solid var(--border-glow)',
-                                        color: '#f8fafc',
-                                        padding: '0.9rem 1.2rem',
-                                        borderRadius: '10px',
-                                        cursor: 'pointer',
-                                        textAlign: 'left',
-                                        fontSize: '0.95rem',
-                                        transition: 'all 0.2s ease'
-                                    };
-
-                                    if (isSelected) {
-                                        optionStyle.border = '1px solid var(--accent-cyan)';
-                                        optionStyle.background = 'rgba(56, 189, 248, 0.2)';
-                                        optionStyle.boxShadow = '0 0 12px rgba(56, 189, 248, 0.3)';
-                                    }
-
-                                    if (isSubmitted) {
-                                        if (opt.correct) {
-                                            optionStyle.border = '1px solid var(--accent-emerald)';
-                                            optionStyle.background = 'rgba(52, 211, 153, 0.2)';
-                                        } else if (isSelected && !opt.correct) {
-                                            optionStyle.border = '1px solid #ef4444';
-                                            optionStyle.background = 'rgba(239, 68, 68, 0.2)';
-                                        }
-                                    }
-
-                                    return (
-                                        <button 
-                                            key={opt.id}
-                                            onClick={() => !isSubmitted && setSelectedOption(opt.id)}
-                                            style={optionStyle}
-                                        >
-                                            {opt.text}
-                                        </button>
-                                    );
-                                })}
-                            </div>
-
-                            {/* Retroalimentación en vivo */}
-                            {isSubmitted && (
-                                <div style={{
-                                    width: '100%',
-                                    padding: '1rem',
-                                    borderRadius: '10px',
-                                    marginBottom: '1.5rem',
-                                    background: selectedOption === 'B' ? 'rgba(52, 211, 153, 0.15)' : 'rgba(239, 68, 68, 0.15)',
-                                    border: `1px solid ${selectedOption === 'B' ? 'var(--accent-emerald)' : '#ef4444'}`,
-                                    color: '#f8fafc'
-                                }}>
-                                    <strong>{selectedOption === 'B' ? '¡Respuesta Correcta!' : 'Inténtalo de nuevo'}</strong>
-                                    <p style={{ fontSize: '0.9rem', marginTop: '0.4rem', opacity: 0.9 }}>
-                                        {questionData.explanation}
-                                    </p>
-                                </div>
-                            )}
-
-                            {/* Botones de Control */}
-                            <div style={{ display: 'flex', gap: '1rem', width: '100%' }}>
-                                {!isSubmitted ? (
-                                    <button 
-                                        onClick={handleSubmit}
-                                        disabled={selectedOption === null}
-                                        className="btn-add-action" 
-                                        style={{
-                                            width: '100%',
-                                            background: selectedOption === null 
-                                                ? 'rgba(255,255,255,0.1)' 
-                                                : 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))',
-                                            color: selectedOption === null ? 'var(--text-muted)' : '#ffffff',
-                                            padding: '0.8rem',
-                                            borderRadius: '10px',
-                                            cursor: selectedOption === null ? 'not-allowed' : 'pointer'
-                                        }}
-                                    >
-                                        Validar Solución
-                                    </button>
-                                ) : (
-                                    <button 
-                                        onClick={handleReset}
-                                        className="btn-add-action" 
-                                        style={{
-                                            width: '100%',
-                                            background: 'rgba(255, 255, 255, 0.1)',
-                                            border: '1px solid var(--border-glow)',
-                                            color: '#ffffff',
-                                            padding: '0.8rem',
-                                            borderRadius: '10px',
-                                            cursor: 'pointer'
-                                        }}
-                                    >
-                                        Reiniciar Desafío
-                                    </button>
-                                )}
-                            </div>
-
-                        </article>
-                    </main>
+        <!-- Contenido Interactivo del Cuestionario -->
+        <main class="talleres-container container-quiz">
+            <article class="taller-card quiz-card">
+                
+                <!-- Barra de Progreso -->
+                <div class="quiz-progress-wrapper">
+                    <div class="quiz-progress-header">
+                        <span>Módulo 1 de 4</span>
+                        <span>Progreso: 25%</span>
+                    </div>
+                    <div class="quiz-progress-track">
+                        <div class="quiz-progress-fill"></div>
+                    </div>
                 </div>
-            );
-        }
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<TallerRoboticaInteractivoView />);
-    </script>
+                <!-- Título y Enunciado del Desafío -->
+                <h2 class="quiz-title">
+                    🤖 Desafío 1: Sensores y Ultrasonido
+                </h2>
+
+                <p class="quiz-prompt">
+                    Estás programando un robot evasor de obstáculos usando un sensor ultrasónico (HC-SR04). ¿Qué componente del sensor emite la onda de alta frecuencia para medir la distancia?
+                </p>
+
+                <!-- Formulario Interactivo en CSS Puro -->
+                <form class="quiz-form">
+                    
+                    <!-- Radio Buttons (atributo required para activar CSS :valid) -->
+                    <input type="radio" name="option" id="opt-a" class="radio-opt" value="A" required>
+                    <input type="radio" name="option" id="opt-b" class="radio-opt correct-opt" value="B" required>
+                    <input type="radio" name="option" id="opt-c" class="radio-opt" value="C" required>
+                    <input type="radio" name="option" id="opt-d" class="radio-opt" value="D" required>
+
+                    <!-- Checkbox invisible de estado validado -->
+                    <input type="checkbox" id="check-submitted" class="submit-toggle" hidden>
+
+                    <!-- Opciones Seleccionables -->
+                    <div class="options-container">
+                        <label for="opt-a" class="quiz-option">
+                            A) Pin Echo (Receptor)
+                        </label>
+                        
+                        <label for="opt-b" class="quiz-option">
+                            B) Pin Trig (Disparador / Emisor)
+                        </label>
+                        
+                        <label for="opt-c" class="quiz-option">
+                            C) Pin VCC (Alimentación)
+                        </label>
+                        
+                        <label for="opt-d" class="quiz-option">
+                            D) ServoMotor de giro
+                        </label>
+                    </div>
+
+                    <!-- Mensajes de Feedback -->
+                    <div class="feedback-box feedback-correct">
+                        <strong>¡Respuesta Correcta!</strong>
+                        <p>¡Excelente! El pin 'Trig' (Trigger) envía el pulso de ultrasonido, mientras que el pin 'Echo' recibe el rebote para calcular la distancia.</p>
+                    </div>
+
+                    <div class="feedback-box feedback-incorrect">
+                        <strong>Inténtalo de nuevo</strong>
+                        <p>El pin 'Trig' es el que dispara la onda de ultrasonido. El pin 'Echo' solo recibe la respuesta.</p>
+                    </div>
+
+                    <!-- Contenedor de Botones de Control -->
+                    <div class="controls-wrapper">
+                        <!-- Único Botón de Validar -->
+                        <label for="check-submitted" class="btn-quiz btn-validate">
+                            Validar Solución
+                        </label>
+
+                        <!-- Botón de Reinicio (Se muestra al hacer clic en Validar) -->
+                        <button type="reset" class="btn-quiz btn-reset">
+                            Reiniciar Desafío
+                        </button>
+                    </div>
+
+                </form>
+
+            </article>
+        </main>
+    </div>
+
 </body>
 </html>

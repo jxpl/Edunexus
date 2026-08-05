@@ -1,24 +1,19 @@
 /* ==========================================
-   1. VARIABLES Y BASE FUTURISTA
+   1. VARIABLES Y ESTILOS GENERALES
    ========================================== */
 :root {
-    /* Paleta cromática y fondo */
-    --bg-dark: #263d74;
-    --header-bg: rgba(15, 23, 42, 0.85);
-    --card-bg: rgba(30, 41, 59, 0.6);
-    --card-hover: rgba(30, 41, 59, 0.85);
+    /* Paleta cromática vibrante */
+    --bg-dark: #263d74;               /* Azul noche muy oscuro */
+    --card-bg: rgba(30, 41, 59, 0.6);  /* Cristal esmerilado translúcido */
+    --border-glow: rgba(56, 189, 248, 0.2); /* Borde cyan translúcido */
     
-    /* Colores Neón & Acentos */
-    --accent-cyan: #38bdf8;
-    --accent-indigo: #818cf8;
-    --border-glow: rgba(56, 189, 248, 0.2);
+    --accent-cyan: #38bdf8;           /* Cyan neón */
+    --accent-indigo: #818cf8;         /* Índigo brillante */
+    --accent-emerald: #34d399;        /* Verde esmeralda */
     
-    /* Tipografía y Textos */
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --text-main: #f8fafc;             /* Texto principal ultra claro */
+    --text-muted: #94a3b8;            /* Texto secundario */
     
-    /* Efectos */
     --shadow-glow: 0 0 25px rgba(56, 189, 248, 0.25);
     --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -30,13 +25,15 @@
 }
 
 body {
-    font-family: var(--font-sans);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     color: var(--text-main);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
     background-color: var(--bg-dark);
-    line-height: 1.6;
 
-    /* Fondo dinámico: Luces de neón y malla futurista */
+    /* FONDO DINÁMICO: Luces de Neón Radial y Malla Futurista */
     background-image: 
         radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.18) 0%, transparent 45%),
         radial-gradient(circle at 85% 80%, rgba(129, 140, 248, 0.18) 0%, transparent 45%),
@@ -48,44 +45,32 @@ body {
 }
 
 /* ==========================================
-   2. ESTRUCTURA Y BARRA SUPERIOR (HEADER)
+   2. LAYOUT Y BARRA SUPERIOR (.top-bar)
    ========================================== */
 .dashboard-layout {
-    width: 100%;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 .top-bar {
-    background: var(--header-bg);
+    background: rgba(15, 23, 42, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    height: 65px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
+    padding: 1rem 2rem;
     position: sticky;
     top: 0;
     z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .top-bar-left {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-}
-
-.app-title {
-    font-size: 1.5rem;
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    text-transform: capitalize;
-    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .icon-btn {
@@ -106,103 +91,177 @@ body {
     box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
 }
 
+.app-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    text-transform: capitalize;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 /* ==========================================
-   3. CONTENEDOR PRINCIPAL Y GRID
+   3. SECCIÓN PRINCIPAL Y TÍTULO ANIMADO
    ========================================== */
 .main-container {
     max-width: 1200px;
-    width: 90%;
-    margin: 3rem auto;
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
     flex: 1;
 }
 
-.menu-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
+.news-banner {
     text-align: center;
-    background: linear-gradient(to right, #ffffff, var(--text-muted));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 0.5rem;
+    margin-bottom: 2.5rem;
 }
 
-/* AQUÍ ESTÁ LA MAGIA: 3 columnas responsivas */
-.menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+/* --- TÍTULO ANIMADO EN TONOS BLANCO Y GRIS CON EFECTO 3D --- */
+.menu-title {
+    font-size: 2.75rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    
+    /* Degradado base en tonos blanco / gris */
+    background: linear-gradient(
+        -45deg, 
+        #ffffff, 
+        #d1d5db, 
+        #6b7280, 
+        #d1d5db, 
+        #ffffff
+    );
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Capas de sombra 3D base */
+    filter: drop-shadow(1px 2px 0px rgba(0, 0, 0, 0.9))
+            drop-shadow(3px 5px 4px rgba(0, 0, 0, 0.6))
+            drop-shadow(0px 0px 12px rgba(255, 255, 255, 0.3));
+
+    /* Animación de color */
+    animation: gradientMoveTitle 6s ease infinite;
+
+    /* PROPIEDADES PARA EL EFECTO 3D DE TRANSICIÓN */
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                filter 0.4s ease;
+}
+
+/* EFECTO HOVER EN PERSPECTIVA 3D */
+.menu-title:hover {
+    transform: perspective(600px) rotateX(12deg) rotateY(-8deg) scale(1.05);
+
+    /* Ajustamos la sombra para simular que el texto se ha elevado de la pantalla */
+    filter: drop-shadow(2px 6px 0px rgba(0, 0, 0, 0.9))
+            drop-shadow(8px 15px 12px rgba(0, 0, 0, 0.7))
+            drop-shadow(0px 0px 20px rgba(255, 255, 255, 0.6));
+}
+
+@keyframes gradientMoveTitle {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Caja de Noticias */
+.news-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border-glow);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 14px;
+    padding: 1.5rem 2rem;
+    text-align: left;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.news-box h2 {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--accent-cyan);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.news-box p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
 }
 
 /* ==========================================
-   4. TARJETAS (CARDS) CON GLASSMORPHISM
+   4. GRID DE TARJETAS REACT (.menu-grid)
    ========================================== */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.75rem;
+}
+
+.grid-card-link {
+    display: block;
+    outline: none;
+    text-decoration: none;
+}
+
 .grid-card {
     background: var(--card-bg);
     border: 1px solid var(--border-glow);
     border-radius: 16px;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    padding: 2.5rem 1.5rem;
+    padding: 1.25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    cursor: pointer;
+    text-align: center;
     transition: all var(--transition-fast);
-    position: relative;
-    overflow: hidden;
+    height: 100%;
 }
 
 .grid-card:hover {
-    background: var(--card-hover);
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     border-color: var(--accent-cyan);
     box-shadow: var(--shadow-glow);
+    background: rgba(30, 41, 59, 0.85);
 }
 
 .grid-card:active {
     transform: translateY(-2px);
 }
 
-/* Diseño circular futurista para las imágenes */
 .card-image-wrapper {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
+    width: 100%;
+    height: 150px;
+    border-radius: 12px;
     overflow: hidden;
-    background: rgba(15, 23, 42, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid var(--accent-cyan);
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.grid-card:hover .card-image-wrapper {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+    margin-bottom: 1rem;
 }
 
 .card-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform var(--transition-fast);
+}
+
+.grid-card:hover .card-img {
+    transform: scale(1.05);
 }
 
 .card-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+    font-size: 1.1rem;
+    font-weight: 800;
     color: #ffffff;
-    text-align: center;
-    transition: color var(--transition-fast);
+    letter-spacing: 0.03em;
+    margin-top: auto;
     text-transform: capitalize;
+    transition: color var(--transition-fast);
 }
 
 .grid-card:hover .card-title {
@@ -210,7 +269,7 @@ body {
 }
 
 /* ==========================================
-   5. RESPONSIVE
+   5. ADAPTACIÓN RESPONSIVA
    ========================================== */
 @media (max-width: 640px) {
     .top-bar {
@@ -218,10 +277,14 @@ body {
     }
 
     .main-container {
-        width: 95%;
+        padding: 0 1rem;
         margin: 1.5rem auto;
     }
 
+    .menu-title {
+        font-size: 2rem;
+    }
+    
     .menu-grid {
         grid-template-columns: 1fr;
     }

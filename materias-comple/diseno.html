@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduNexus - Diseño UX/UI</title>
+    <link rel="stylesheet" href="../progreso.css">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>EduNexus</h1>
+            <nav>
+                <a href="../Inicio.html">Inicio</a>
+                <a href="clases.html">Clases</a>
+                <a href="diplomas.html">Diplomas</a>
+                <a href="progreso.html" class="active">Progreso</a>
+            </nav>
+        </div>
+    </header>
+    <div id="react-section"></div>
+    <footer><p>&copy; 2026 EduNexus. Todos los derechos reservados.</p></footer>
+
+    <script type="text/babel">
+        const initialData = {
+            title: "Diseño UX / UI",
+            modules: [
+                { id: 1, title: "Unidad 1: Investigación de Usuarios", lessons: [{ id: "1.1", name: "1.1 Personas y User Journeys", done: true }, { id: "1.2", name: "1.2 Entrevistas y Wireframes", done: false }] },
+                { id: 2, title: "Unidad 2: Prototipado e Interfaz", lessons: [{ id: "2.1", name: "2.1 Design Systems y Figma", done: false }, { id: "2.2", name: "2.2 Usabilidad y Microinteracciones", done: false }] }
+            ]
+        };
+
+        function CoursePage() {
+            const [modules, setModules] = React.useState(initialData.modules);
+            const toggleLesson = (mId, lId) => setModules(prev => prev.map(m => m.id !== mId ? m : { ...m, lessons: m.lessons.map(l => l.id === lId ? { ...l, done: !l.done } : l) }));
+            return (
+                <section className="courses-section">
+                    <a href="./materias.html" className="btn-enter btn-back" style={{ display: 'inline-flex', gap: '0.5rem', marginBottom: '1.5rem', textDecoration: 'none' }}>&larr; Volver a Materias</a>
+                    <h2>{initialData.title}</h2>
+                    <div className="courses-grid" style={{ marginTop: '2rem' }}>
+                        {modules.map(m => (
+                            <article key={m.id} className="course-card">
+                                <h3>{m.title}</h3>
+                                <ul>{m.lessons.map(l => <li key={l.id} onClick={() => toggleLesson(m.id, l.id)} style={{ cursor: 'pointer' }}>{l.done ? '✓ ' : '○ '}{l.name}</li>)}</ul>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+            );
+        }
+        ReactDOM.createRoot(document.getElementById('react-section')).render(<CoursePage />);
+    </script>
+</body>
+</html>

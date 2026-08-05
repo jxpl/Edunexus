@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>EduNexus - Bases de Datos</title>
+    <link rel="stylesheet" href="../progreso.css">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <header><div class="header-container"><h1>EduNexus</h1></div></header>
+    <div id="react-section"></div>
+    <script type="text/babel">
+        function CoursePage() {
+            return (
+                <section className="courses-section">
+                    <a href="./materias.html" className="btn-enter btn-back" style={{ textDecoration: 'none' }}>&larr; Volver a Materias</a>
+                    <h2>Bases de Datos</h2>
+                    <p>Fundamentos de SQL, modelado entidad-relación y bases de datos NoSQL.</p>
+                </section>
+            );
+        }
+        ReactDOM.createRoot(document.getElementById('react-section')).render(<CoursePage />);
+    </script>
+</body>
+</html>

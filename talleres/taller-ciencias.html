@@ -21,28 +21,29 @@
         function TallerDetalleView() {
             const [showMenu, setShowMenu] = React.useState(false);
 
-            // Objeto con la información detallada del taller de ciencias
             const tallerData = {
-                title: "taller #1 de ciencias",
+                title: "Taller #1 de ciencias",
                 category: "Ciencias Naturales",
                 code: "TAL-SCI-01",
                 imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&auto=format&fit=crop&q=80",
                 description: "En este taller práctico aprenderemos los principios del método científico, la formulación de hipótesis y el análisis de experimentos en el laboratorio.",
                 guides: [
-                    { id: 1, name: "Guía 1: Introducción al Método Científico.pdf", size: "1.2 MB" },
-                    { id: 2, name: "Guía 2: Plantilla de Laboratorio y Registro.pdf", size: "850 KB" }
+                    { id: 1, name: "Guía 1: Introducción al Método Científico.pdf", size: "1.2 MB", url: "#" },
+                    { id: 2, name: "Guía 2: Plantilla de Laboratorio y Registro.pdf", size: "850 KB", url: "#" }
                 ],
-                interactiveLink: "taller-interactivo.html" // <--- Enlace al taller interactivo
+                interactiveLink: "taller-interactivo.html"
             };
 
-            // Regresar a la cuadrícula general de talleres
             const handleBackToTalleres = () => {
                 window.location.href = "talleres.html";
             };
 
-            // Redirigir a la actividad interactiva
             const handleStartInteractive = () => {
                 window.location.href = tallerData.interactiveLink;
+            };
+
+            const handleDownload = (guideName) => {
+                console.log(`Descargando: ${guideName}`);
             };
 
             return (
@@ -60,8 +61,7 @@
                             <span className="app-title">{tallerData.title}</span>
                         </div>
 
-                        <div className="top-bar-right">
-                            {/* Menú Hamburguesa */}
+                        <div className="top-bar-right" style={{ position: 'relative' }}>
                             <button
                                 className="icon-btn"
                                 aria-label="Menú"
@@ -70,29 +70,29 @@
                                 ☰
                             </button>
 
-                            {/* Menú Desplegable Flotante */}
                             {showMenu && (
-                                <div className="dropdown-menu">
+                                <nav className="dropdown-menu">
                                     <a href="../guias/guias.html">Guías</a>
                                     <a href="../clases/clases.html">Clases</a>
                                     <a href="#">Ocupaciones</a>
                                     <a href="../materias/materias.html">Materias complementarias</a>
                                     <button className="btn-add-action">+ Agregar</button>
-                                </div>
+                                </nav>
                             )}
                         </div>
                     </header>
 
-                    {/* Contenido Principal con Card Estilo Glassmorphism */}
-                    <main className="talleres-container" style={{ maxWidth: '750px' }}>
+                    {/* Contenido Principal */}
+                    <main className="talleres-container" style={{ maxWidth: '750px', margin: '0 auto' }}>
                         <article className="taller-card" style={{ cursor: 'default', padding: '1.5rem', width: '100%' }}>
                             
                             {/* Imagen de Cabecera */}
-                            <div className="card-image-wrapper" style={{ height: '240px', width: '100%' }}>
+                            <div className="card-image-wrapper" style={{ height: '240px', width: '100%', overflow: 'hidden', borderRadius: '12px' }}>
                                 <img 
                                     src={tallerData.imageUrl} 
                                     alt={tallerData.title} 
                                     className="card-img" 
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                 />
                             </div>
 
@@ -106,8 +106,8 @@
                                 </span>
                             </div>
 
-                            {/* Título y Explicación */}
-                            <h2 style={{ fontSize: '1.6rem', color: '#ffffff', marginBottom: '0.8rem', textTransform: 'capitalize' }}>
+                            {/* Título y Descripción */}
+                            <h2 style={{ fontSize: '1.6rem', color: '#ffffff', marginBottom: '0.8rem' }}>
                                 {tallerData.title}
                             </h2>
 
@@ -127,7 +127,7 @@
                                             key={guide.id}
                                             style={{
                                                 background: 'rgba(15, 23, 42, 0.6)',
-                                                border: '1px solid var(--border-glow)',
+                                                border: '1px solid var(--border-glow, rgba(255,255,255,0.1))',
                                                 padding: '0.75rem 1rem',
                                                 borderRadius: '8px',
                                                 display: 'flex',
@@ -136,9 +136,13 @@
                                             }}
                                         >
                                             <span style={{ fontSize: '0.9rem', color: '#f8fafc' }}>
-                                                📄 {guide.name}
+                                                📄 {guide.name} <small style={{ color: '#94a3b8', marginLeft: '0.5rem' }}>({guide.size})</small>
                                             </span>
-                                            <button className="icon-btn" style={{ fontSize: '0.8rem', padding: '0.3rem 0.7rem' }}>
+                                            <button 
+                                                className="icon-btn" 
+                                                style={{ fontSize: '0.8rem', padding: '0.3rem 0.7rem' }}
+                                                onClick={() => handleDownload(guide.name)}
+                                            >
                                                 Descargar
                                             </button>
                                         </div>
@@ -146,19 +150,21 @@
                                 </div>
                             </div>
 
-                            {/* Botón Principal de Inicio de Taller */}
+                            {/* Botón Principal */}
                             <button 
                                 className="btn-add-action" 
                                 onClick={handleStartInteractive}
                                 style={{
                                     marginTop: '1.8rem',
                                     width: '100%',
-                                    background: 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))',
+                                    background: 'linear-gradient(135deg, var(--accent-cyan, #06b6d4), var(--accent-indigo, #6366f1))',
                                     color: '#ffffff',
                                     padding: '0.8rem',
                                     borderRadius: '10px',
                                     boxShadow: '0 4px 15px rgba(56, 189, 248, 0.3)',
-                                    cursor: 'pointer'
+                                    cursor: 'pointer',
+                                    fontWeight: 'bold',
+                                    border: 'none'
                                 }}
                             >
                                 Iniciar Taller Interactivo
