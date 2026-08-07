@@ -15,7 +15,7 @@
 </head>
 <body>
 
-    <!-- Encabezado idéntico al código de referencia -->
+    <!-- Encabezado con Navegación Principal -->
     <header>
         <div class="header-container">
             <h1>EduNexus</h1>
@@ -33,13 +33,12 @@
 
     <script type="text/babel">
         function DiplomasView() {
-            // Estados para búsqueda, filtro y menú desplegable
+            // Estados para búsqueda y filtro
             const [searchTerm, setSearchTerm] = React.useState('');
             const [selectedCategory, setSelectedCategory] = React.useState('Todos');
             const [showSearch, setShowSearch] = React.useState(false);
-            const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-            // Lista extendida de diplomas
+            // Lista de Diplomas
             const diplomasList = [
                 {
                     id: 1,
@@ -76,7 +75,7 @@
                 }
             ];
 
-            // Filtrar diplomas por término de búsqueda y por categoría
+            // Filtrado dinámico
             const filteredDiplomas = diplomasList.filter(diploma => {
                 const matchesSearch = 
                     diploma.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -89,7 +88,6 @@
                 return matchesSearch && matchesCategory;
             });
 
-            // Acciones de botón
             const handleDownload = (title) => {
                 alert(`Iniciando descarga del diploma: ${title}`);
             };
@@ -101,7 +99,7 @@
 
             return (
                 <div className="diplomas-page">
-                    {/* Barra de búsqueda interactiva independiente */}
+                    {/* BARRA DE BÚSQUEDA ALINEADA TOTALMENTE A LA DERECHA */}
                     <div className="search-bar-wrapper" style={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem 2rem 0 2rem' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                             {showSearch && (
@@ -131,7 +129,7 @@
                     {/* Contenido Principal */}
                     <main className="diplomas-container">
                         
-                        {/* Filtros Rápidos */}
+                        {/* Filtros por Categoría */}
                         <div className="filter-chips">
                             {['Todos', 'Excelencia', 'Tecnología', 'Ciencias'].map(cat => (
                                 <button
@@ -144,7 +142,7 @@
                             ))}
                         </div>
 
-                        {/* Listado de Diplomas */}
+                        {/* Lista de Diplomas Filtrados */}
                         {filteredDiplomas.length > 0 ? (
                             filteredDiplomas.map((item) => (
                                 <article key={item.id} className="diploma-item">
@@ -172,7 +170,6 @@
                                             {item.additionalText}
                                         </p>
 
-                                        {/* Acciones */}
                                         <div className="diploma-actions">
                                             <button 
                                                 className="btn-action primary"

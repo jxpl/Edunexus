@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduNexus - Clases</title>
 
-    <!-- Hacemos referencia a los estilos desde la subcarpeta clases/ -->
+    <!-- Hojas de estilo externas de la raíz -->
     <link rel="stylesheet" href="../inicio.css">
     <link rel="stylesheet" href="../styles.css">
 
@@ -24,14 +24,14 @@
             const [searchTerm, setSearchTerm] = React.useState('');
             const [showSearch, setShowSearch] = React.useState(false);
 
-            // Lista de materias/clases disponibles
+            // Lista de materias/clases disponibles vinculadas a sus respectivos archivos HTML
             const clasesItems = [
-                { id: 1, title: "MATEMÁTICAS", teacher: "Prof. Carlos Gómez", imageUrl: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=300&auto=format&fit=crop&q=80", link: "#" },
-                { id: 2, title: "HISTORIA", teacher: "Dra. Elena Rostova", imageUrl: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=300&auto=format&fit=crop&q=80", link: "#" },
-                { id: 3, title: "CIENCIAS Y FÍSICA", teacher: "Ing. Roberto Martínez", imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=300&auto=format&fit=crop&q=80", link: "#" },
-                { id: 4, title: "LITERATURA", teacher: "Lic. Sofía Morales", imageUrl: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=300&auto=format&fit=crop&q=80", link: "#" },
-                { id: 5, title: "PROGRAMACIÓN", teacher: "Ing. Ana Silva", imageUrl: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=300&auto=format&fit=crop&q=80", link: "#" },
-                { id: 6, title: "INGLÉS", teacher: "Prof. John Doe", imageUrl: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=300&auto=format&fit=crop&q=80", link: "#" }
+                { id: 1, title: "MATEMÁTICAS", teacher: "Prof. Carlos Gómez", imageUrl: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=300&auto=format&fit=crop&q=80", link: "./matematicas.html" },
+                { id: 2, title: "HISTORIA", teacher: "Dra. Elena Rostova", imageUrl: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=300&auto=format&fit=crop&q=80", link: "./historia.html" },
+                { id: 3, title: "CIENCIAS Y FÍSICA", teacher: "Ing. Roberto Martínez", imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=300&auto=format&fit=crop&q=80", link: "./ciencias_fisica.html" },
+                { id: 4, title: "LITERATURA", teacher: "Lic. Sofía Morales", imageUrl: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=300&auto=format&fit=crop&q=80", link: "./literatura.html" },
+                { id: 5, title: "PROGRAMACIÓN", teacher: "Ing. Ana Silva", imageUrl: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=300&auto=format&fit=crop&q=80", link: "./programacion_clase.html" },
+                { id: 6, title: "INGLÉS", teacher: "Prof. John Doe", imageUrl: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=300&auto=format&fit=crop&q=80", link: "./ingles_clase.html" }
             ];
 
             const filteredClasses = clasesItems.filter(item =>
@@ -40,15 +40,11 @@
             );
 
             const handleNavigate = (url) => {
-                if (url !== '#') {
-                    window.location.href = url;
-                } else {
-                    alert("Redirigiendo al contenido de la clase...");
-                }
+                window.location.href = url;
             };
 
             const handleGoBack = () => {
-                window.location.href = "../Inicio.html"; // O la ruta de tu menú principal
+                window.location.href = "../Inicio.html";
             };
 
             return (
@@ -63,7 +59,7 @@
                             </span>
                         </div>
 
-                        <div className="top-bar-right" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <div className="top-bar-right" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: 'auto' }}>
                             {showSearch && (
                                 <input
                                     type="text"
