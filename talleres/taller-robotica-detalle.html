@@ -3,210 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduNexus - Taller #1 de Ciencias</title>
-
-    <!-- HOJA DE ESTILOS FUTURISTA COMPARTIDA -->
+    <title>EduNexus - Detalle Taller #2 Robótica</title>
+    <!-- Mantiene la misma hoja de estilos del proyecto -->
     <link rel="stylesheet" href="talleres.css">
-    
-    <!-- React, ReactDOM y Babel por CDN -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
 
-    <div id="root"></div>
+    <div class="talleres-page">
+        <!-- Encabezado Superior -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <!-- Retorna al catálogo principal de talleres -->
+                <a href="talleres.html" class="icon-btn" aria-label="Volver a talleres" title="Volver a talleres">
+                    ⬅
+                </a>
+                <a href="talleres.html" class="app-title">
+                    taller #2 de robótica
+                </a>
+            </div>
 
-    <script type="text/babel">
-        function TallerDetalleView() {
-            const [showMenu, setShowMenu] = React.useState(false);
+            <div class="top-bar-right">
+                <input type="checkbox" id="toggle-search" class="state-toggle" hidden>
+                <input type="text" class="search-input" placeholder="Buscar en la lección...">
+                
+                <label for="toggle-search" class="icon-btn" aria-label="Buscar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </label>
 
-            // Objeto con la información detallada del taller de ciencias
-            const tallerData = {
-                title: "taller #1 de ciencias",
-                category: "Ciencias Naturales",
-                code: "TAL-SCI-01",
-                imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&auto=format&fit=crop&q=80",
-                description: "En este taller práctico aprenderemos los principios del método científico, la formulación de hipótesis y el análisis de experimentos en el laboratorio.",
-                guides: [
-                    { id: 1, name: "Guía 1: Introducción al Método Científico.pdf", size: "1.2 MB" },
-                    { id: 2, name: "Guía 2: Plantilla de Laboratorio y Registro.pdf", size: "850 KB" }
-                ],
-                interactiveLink: "taller-interactivo.html"
-            };
+                <nav class="dropdown-menu">
+                    <a href="../guias/guias.html">Guías</a>
+                    <a href="../clases/clases.html">Clases</a>
+                    <a href="#">Ocupaciones</a>
+                    <a href="../materias/materias.html">Materias complementarias</a>
+                    <a href="#" class="btn-add-action">+ Agregar</a>
+                </nav>
+            </div>
+        </header>
 
-            // Regresar a la cuadrícula general de talleres
-            const handleBackToTalleres = () => {
-                window.location.href = "talleres.html";
-            };
-
-            // Redirigir a la actividad interactiva
-            const handleStartInteractive = () => {
-                window.location.href = tallerData.interactiveLink;
-            };
-
-            return (
-                <div className="talleres-page">
-                    {/* Encabezado Superior */}
-                    <header className="top-bar">
-                        <div className="top-bar-left">
-                            {/* BOTÓN DE DEVOLVERSE ACTUALIZADO */}
-                            <button 
-                                className="icon-btn" 
-                                aria-label="Volver a talleres"
-                                onClick={handleBackToTalleres}
-                                style={{
-                                    display: 'inline-flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    gap: '0.5rem',
-                                    padding: '0.5rem 1rem',
-                                    background: 'rgba(15, 23, 42, 0.65)',
-                                    backdropFilter: 'blur(10px)',
-                                    WebkitBackdropFilter: 'blur(10px)',
-                                    border: '1px solid rgba(56, 189, 248, 0.3)',
-                                    borderRadius: '8px',
-                                    color: 'var(--accent-cyan, #38bdf8)',
-                                    fontSize: '0.9rem',
-                                    fontWeight: '500',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.25s ease',
-                                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)'
-                                }}
-                            >
-                                <svg 
-                                    width="16" 
-                                    height="16" 
-                                    viewBox="0 0 24 24" 
-                                    fill="none" 
-                                    stroke="currentColor" 
-                                    strokeWidth="2.5" 
-                                    strokeLinecap="round" 
-                                    strokeLinejoin="round"
-                                >
-                                    <line x1="19" y1="12" x2="5" y2="12"></line>
-                                    <polyline points="12 19 5 12 12 5"></polyline>
-                                </svg>
-                                <span>Volver</span>
-                            </button>
-
-                            <span className="app-title" style={{ marginLeft: '0.5rem' }}>
-                                {tallerData.title}
-                            </span>
-                        </div>
-
-                        <div className="top-bar-right">
-                            {/* Menú Hamburguesa */}
-                            <button
-                                className="icon-btn"
-                                aria-label="Menú"
-                                onClick={() => setShowMenu(!showMenu)}
-                            >
-                                ☰
-                            </button>
-
-                            {/* Menú Desplegable Flotante */}
-                            {showMenu && (
-                                <div className="dropdown-menu">
-                                    <a href="../guias/guias.html">Guías</a>
-                                    <a href="../clases/clases.html">Clases</a>
-                                    <a href="#">Ocupaciones</a>
-                                    <a href="../materias/materias.html">Materias complementarias</a>
-                                    <button className="btn-add-action">+ Agregar</button>
-                                </div>
-                            )}
-                        </div>
-                    </header>
-
-                    {/* Contenido Principal con Card Estilo Glassmorphism */}
-                    <main className="talleres-container" style={{ maxWidth: '750px' }}>
-                        <article className="taller-card" style={{ cursor: 'default', padding: '1.5rem', width: '100%' }}>
-                            
-                            {/* Imagen de Cabecera */}
-                            <div className="card-image-wrapper" style={{ height: '240px', width: '100%' }}>
-                                <img 
-                                    src={tallerData.imageUrl} 
-                                    alt={tallerData.title} 
-                                    className="card-img" 
-                                />
-                            </div>
-
-                            {/* Etiquetas y Código */}
-                            <div style={{ display: 'flex', gap: '0.8rem', margin: '1rem 0', alignItems: 'center' }}>
-                                <span className="badge-code" style={{ fontFamily: 'monospace', background: 'rgba(255,255,255,0.08)', padding: '0.2rem 0.6rem', borderRadius: '4px', color: 'var(--accent-cyan)' }}>
-                                    {tallerData.code}
-                                </span>
-                                <span style={{ color: 'var(--accent-emerald)', background: 'rgba(52, 211, 153, 0.15)', padding: '0.2rem 0.6rem', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 'bold' }}>
-                                    {tallerData.category}
-                                </span>
-                            </div>
-
-                            {/* Título y Explicación */}
-                            <h2 style={{ fontSize: '1.6rem', color: '#ffffff', marginBottom: '0.8rem', textTransform: 'capitalize' }}>
-                                {tallerData.title}
-                            </h2>
-
-                            <p style={{ color: '#e2e8f0', marginBottom: '1.5rem', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                                {tallerData.description}
-                            </p>
-
-                            {/* Descarga de Archivos / Guías */}
-                            <div style={{ width: '100%', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1.2rem' }}>
-                                <h3 style={{ fontSize: '1.05rem', color: 'var(--accent-cyan)', marginBottom: '0.8rem' }}>
-                                    Materiales y Recursos
-                                </h3>
-                                
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-                                    {tallerData.guides.map(guide => (
-                                        <div 
-                                            key={guide.id}
-                                            style={{
-                                                background: 'rgba(15, 23, 42, 0.6)',
-                                                border: '1px solid var(--border-glow)',
-                                                padding: '0.75rem 1rem',
-                                                borderRadius: '8px',
-                                                display: 'flex',
-                                                justifyContent: 'space-between',
-                                                alignItems: 'center'
-                                            }}
-                                        >
-                                            <span style={{ fontSize: '0.9rem', color: '#f8fafc' }}>
-                                                📄 {guide.name}
-                                            </span>
-                                            <button className="icon-btn" style={{ fontSize: '0.8rem', padding: '0.3rem 0.7rem' }}>
-                                                Descargar
-                                            </button>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Botón Principal de Inicio de Taller */}
-                            <button 
-                                className="btn-add-action" 
-                                onClick={handleStartInteractive}
-                                style={{
-                                    marginTop: '1.8rem',
-                                    width: '100%',
-                                    background: 'linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo))',
-                                    color: '#ffffff',
-                                    padding: '0.8rem',
-                                    borderRadius: '10px',
-                                    boxShadow: '0 4px 15px rgba(56, 189, 248, 0.3)',
-                                    cursor: 'pointer'
-                                }}
-                            >
-                                Iniciar Taller Interactivo
-                            </button>
-
-                        </article>
-                    </main>
+        <!-- Vista de Detalle -->
+        <main class="talleres-container">
+            <article class="taller-card" style="max-width: 800px; margin: 0 auto; padding: 2rem;">
+                <div class="card-image-wrapper" style="height: 280px; margin-bottom: 1.5rem;">
+                    <img 
+                        src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=80" 
+                        alt="Taller de Robótica" 
+                        class="card-img" 
+                    />
                 </div>
-            );
-        }
+                
+                <h2 class="card-title" style="font-size: 1.5rem; margin-bottom: 1rem; color: #4facfe;">
+                    Ensamblaje y Programación de Microcontroladores
+                </h2>
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<TallerDetalleView />);
-    </script>
+                <p style="color: #cbd5e1; line-height: 1.6; margin-bottom: 2rem;">
+                    En este taller práctico aprenderás la integración de sensores ultrasónicos y lógica de control en C++ para programar un rover autónomo capaz de esquivar obstáculos en tiempo real.
+                </p>
+
+                <!-- Botón de acción que conecta con la actividad -->
+                <a href="taller-robotica-actividad.html" class="btn-add-action" style="display: block; text-align: center; text-decoration: none; padding: 0.8rem 1.5rem;">
+                    🚀 Iniciar Actividad Interactiva
+                </a>
+            </article>
+        </main>
+    </div>
+
 </body>
 </html>
