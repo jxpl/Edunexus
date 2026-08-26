@@ -22,6 +22,7 @@
         function MainMenu() {
             const [searchTerm, setSearchTerm] = React.useState('');
             const [showSearch, setShowSearch] = React.useState(false);
+            const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
 
             const menuItems = [
                 { id: 1, title: "GUÍAS", imageUrl: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=150&auto=format&fit=crop&q=80", alt: "Guías", link: "./guias/guias.html" },
@@ -32,20 +33,48 @@
                 { id: 6, title: "DIPLOMAS", imageUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=150&auto=format&fit=crop&q=80", alt: "Diplomas", link: "./diplomas/diplomas.html" }
             ];
 
+            const sidebarNavItems = [
+                { id: 'perfil', label: '👤 Mi Perfil', link: 'http://127.0.0.1:5500/Opciones/Mi%20perfil/perfil.html' },
+                { id: 'notificaciones', label: '🔔 Notificaciones', link: 'http://127.0.0.1:5500/Opciones/Notificaciones/notificaciones.html', badge: 3 },
+                { id: 'config', label: '⚙️ Configuraciones', link: 'http://127.0.0.1:5500/Opciones/Configuraciones/configuraciones.html' },
+                { id: 'ayuda', label: '❓ Ayuda y Soporte', link: 'http://127.0.0.1:5500/Opciones/Ayuda/ayuda.html' }
+            ];
+
             const filteredItems = menuItems.filter(item =>
                 item.title.toLowerCase().includes(searchTerm.toLowerCase())
             );
 
-            // Función explícita de navegación JS
             const handleNavigate = (url) => {
                 window.location.href = url;
             };
 
             return (
                 <div className="dashboard-layout">
+                    {isSidebarOpen && (
+                        <div className="sidebar-overlay" onClick={() => setIsSidebarOpen(false)}></div>
+                    )}
+
+                    <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
+                        <div className="sidebar-header">
+                            <h2>EduNexus</h2>
+                            <button className="close-btn" onClick={() => setIsSidebarOpen(false)}>×</button>
+                        </div>
+                        <nav className="sidebar-nav">
+                            {sidebarNavItems.map(item => (
+                                <a key={item.id} href={item.link} className="sidebar-link">
+                                    <span>{item.label}</span>
+                                    {item.badge && <span className="nav-badge">{item.badge}</span>}
+                                </a>
+                            ))}
+                            <a href="http://127.0.0.1:5500/inicio%20de%20sesion/inicio-de-sesion.html" className="sidebar-link logout-btn">
+                                🚪 Cerrar Sesión
+                            </a>
+                        </nav>
+                    </div>
+
                     <header className="top-bar">
                         <div className="top-bar-left">
-                            <button className="icon-btn" aria-label="Menú">☰</button>
+                            <button className="icon-btn" aria-label="Menú" onClick={() => setIsSidebarOpen(true)}>☰</button>
                             <span className="app-title">EduNexus</span>
                         </div>
 
@@ -61,7 +90,8 @@
                                         padding: '5px 10px',
                                         borderRadius: '4px',
                                         border: '1px solid #ccc',
-                                        outline: 'none'
+                                        outline: 'none',
+                                        color: '#333'
                                     }}
                                 />
                             )}
